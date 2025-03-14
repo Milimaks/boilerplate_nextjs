@@ -1,0 +1,24 @@
+/* style.css */
+.h1-clamp {
+  @apply text-[clamp(2rem,_8vw,_4rem)];
+}
+
+.h2-clamp {
+  @apply text-[clamp(1.5rem,_6vw,_3rem)];
+}
+
+.h3-clamp {
+  @apply text-[clamp(1.25rem,_5vw,_2.5rem)];
+}
+
+.h4-clamp {
+  @apply text-[clamp(1rem,_4vw,_2rem)];
+}
+
+.h5-clamp {
+  @apply text-[clamp(0.875rem,_3vw,_1.5rem)];
+}
+
+.h6-clamp {
+  @apply text-[clamp(0.75rem,_2.5vw,_1.25rem)];
+}

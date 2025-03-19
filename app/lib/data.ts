@@ -67,7 +67,6 @@ export async function fetchCardData() {
       customerCountPromise,
       invoiceStatusPromise,
     ]);
-    console.log(data);
 
     const numberOfInvoices = Number(data[0][0].count ?? "0");
 

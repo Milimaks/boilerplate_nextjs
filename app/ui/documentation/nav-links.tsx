@@ -23,6 +23,16 @@ const links: NavSection[] = [
         name: "Home",
         href: "/documentation",
         icon: HomeIcon,
+        submenu: [
+          {
+            name: "Test",
+            href: "/documentation/architecture/test",
+          },
+          {
+            name: "sa",
+            href: "/documentation/architecture/test",
+          },
+        ],
       },
       {
         name: "SEO",
@@ -58,11 +68,17 @@ const links: NavSection[] = [
 
 export default function NavLinks() {
   const pathname = usePathname();
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+
+  // State to manage each submenu's open/closed state
+  // This is a record where the key is the submenu name and the value is a boolean indicating if it's open or closed
+  const [openSubmenu, setOpenSubmenu] = useState<Record<string, boolean>>({});
 
   // Function to toggle the submenu visibility
   const toggleSubmenu = (name: string) => {
-    setOpenSubmenu(openSubmenu === name ? null : name);
+    setOpenSubmenu((prevState) => ({
+      ...prevState,
+      [name]: !prevState[name],
+    }));
   };
   return (
     <>
@@ -99,21 +115,21 @@ export default function NavLinks() {
                     <button
                       onClick={() => toggleSubmenu(item.name)}
                       className={cn(
-                        "flex h-[48px] w-full grow items-center justify-between gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium  hover:text-blue-600 md:flex-none  md:p-2 md:px-3",
+                        "flex h-[48px] w-full grow items-center justify-between gap-2 rounded-md  p-3 text-sm font-medium  hover:text-blue-600 md:flex-none  md:p-2 md:px-3",
                         {
                           " text-blue-600": pathname === item.href,
                         }
                       )}
-                      aria-expanded={openSubmenu === item.name}
+                      aria-expanded={openSubmenu[item.name] || false}
                       aria-label={
-                        openSubmenu === item.name
+                        openSubmenu[item.name]
                           ? `Collapse submenu for ${item.name}`
                           : `Expand submenu for ${item.name}`
                       }
                     >
                       <Link
                         href={item.href}
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 hover:translate-x-1 transition-all duration-200 ease-in-out"
                       >
                         {item.icon && (
                           <item.icon className="w-5 h-5" aria-hidden="true" />
@@ -122,7 +138,7 @@ export default function NavLinks() {
                       </Link>
                       <ChevronRightIcon
                         className={clsx("w-5 h-5 transition-transform", {
-                          "rotate-90": openSubmenu === item.name,
+                          "rotate-90": openSubmenu[item.name],
                         })}
                         aria-hidden="true"
                       />
@@ -130,13 +146,20 @@ export default function NavLinks() {
                   )}
 
                   {/* Submenu items */}
-                  {item.submenu && openSubmenu === item.name && (
-                    <div className="ml-6 space-y-1">
+                  {item.submenu && (
+                    <div
+                      className={cn(
+                        "ml-6 space-y-1 transition-all duration-200 ease-in-out",
+                        openSubmenu[item.name]
+                          ? "max-h-40 opacity-100 transition-all duration-300 ease-in-out"
+                          : "max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+                      )}
+                    >
                       {item.submenu.map((submenuItem) => (
                         <Link
                           key={submenuItem.name}
                           href={submenuItem.href}
-                          className="block py-1 text-sm text-gray-600 hover:text-blue-600"
+                          className="block py-1 text-sm text-gray-600 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 ease-in-out"
                         >
                           {submenuItem.name}
                         </Link>

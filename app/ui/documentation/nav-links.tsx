@@ -35,8 +35,8 @@ const links: NavSection[] = [
         ],
       },
       {
-        name: "SEO",
-        href: "/documentation/SEO",
+        name: "Principes du SEO",
+        href: "/documentation/seo-starter-guide",
         icon: DocumentDuplicateIcon,
       },
       {

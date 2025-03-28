@@ -1,73 +1,154 @@
 "use client";
 
+import { NavSection } from "@/app/lib/definitions";
+import { cn } from "@/lib/utils";
 import {
-  UserGroupIcon,
-  HomeIcon,
   DocumentDuplicateIcon,
+  HomeIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import clsx from "clsx";
+import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+import { useState } from "react";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
-const links = [
-  { name: "Home", href: "/documentation", icon: HomeIcon },
+const links: NavSection[] = [
   {
-    name: "SEO",
-    href: "/documentation/SEO",
-    icon: DocumentDuplicateIcon,
-  },
-  {
-    name: "Architecture",
-    href: "/documentation/architecture",
-    submenu: [
+    title: "Getting Started",
+    items: [
       {
-        name: "test",
-        href: "/documentation/architecture/test",
+        name: "Home",
+        href: "/documentation",
+        icon: HomeIcon,
+      },
+      {
+        name: "SEO",
+        href: "/documentation/SEO",
+        icon: DocumentDuplicateIcon,
+      },
+      {
+        name: "Architecture",
+        href: "/documentation/architecture",
+        submenu: [
+          {
+            name: "Test",
+            href: "/documentation/architecture/test",
+          },
+          {
+            name: "sa",
+            href: "/documentation/architecture/test",
+          },
+          {
+            name: "de",
+            href: "/documentation/architecture/test",
+          },
+          {
+            name: "tre",
+            href: "/documentation/architecture/test",
+          },
+        ],
+        icon: UserGroupIcon,
       },
     ],
-    icon: UserGroupIcon,
   },
 ];
 
 export default function NavLinks() {
   const pathname = usePathname();
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+
+  // Function to toggle the submenu visibility
+  const toggleSubmenu = (name: string) => {
+    setOpenSubmenu(openSubmenu === name ? null : name);
+  };
   return (
     <>
-      {links.map((link) => {
-        const LinkIcon = link.icon;
-        return (
-          <>
-            <Link
-              key={link.name}
-              href={link.href}
-              className={clsx(
-                "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
-                {
-                  "bg-sky-100 text-blue-600": pathname === link.href,
-                }
-              )}
-            >
-              <LinkIcon className="w-6" />
-              <p className="hidden md:block">{link.name}</p>
-            </Link>
-            {link.submenu &&
-              link.submenu.map((menu) => {
-                return (
-                  <div key={menu.name} className="ml-6">
+      <aside>
+        <nav className="space-y-6" aria-label="Main Navigation">
+          {links.map((section) => (
+            <div key={section.title} className="space-y-1">
+              {/* Section title */}
+              <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider  mb-2">
+                {section.title}
+              </h2>
+
+              {/* Loop through items in the section */}
+              {section.items.map((item) => (
+                <div key={item.name}>
+                  {/* Navigation link or button for submenu */}
+                  {!item.submenu ? (
                     <Link
-                      href={menu.href}
-                      className="block py-1 text-sm text-gray-600 hover:text-blue-600"
+                      href={item.href}
+                      className={clsx(
+                        "flex h-[48px] hover:translate-x-1 transition-all duration-200 ease-in-out grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                        {
+                          " text-blue-600": pathname === item.href,
+                        }
+                      )}
+                      aria-current={pathname === item.href ? "page" : undefined}
                     >
-                      {menu.name}
+                      {item.icon && (
+                        <item.icon className="w-5 h-5" aria-hidden="true" />
+                      )}
+                      <span>{item.name}</span>
                     </Link>
-                  </div>
-                );
-              })}
-          </>
-        );
-      })}
+                  ) : (
+                    <button
+                      onClick={() => toggleSubmenu(item.name)}
+                      className={cn(
+                        "flex h-[48px] w-full grow items-center justify-between gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium  hover:text-blue-600 md:flex-none  md:p-2 md:px-3",
+                        {
+                          " text-blue-600": pathname === item.href,
+                        }
+                      )}
+                      aria-expanded={openSubmenu === item.name}
+                      aria-label={
+                        openSubmenu === item.name
+                          ? `Collapse submenu for ${item.name}`
+                          : `Expand submenu for ${item.name}`
+                      }
+                    >
+                      <Link
+                        href={item.href}
+                        className="flex items-center gap-2"
+                      >
+                        {item.icon && (
+                          <item.icon className="w-5 h-5" aria-hidden="true" />
+                        )}
+                        <span>{item.name}</span>
+                      </Link>
+                      <ChevronRightIcon
+                        className={clsx("w-5 h-5 transition-transform", {
+                          "rotate-90": openSubmenu === item.name,
+                        })}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  )}
+
+                  {/* Submenu items */}
+                  {item.submenu && openSubmenu === item.name && (
+                    <div className="ml-6 space-y-1">
+                      {item.submenu.map((submenuItem) => (
+                        <Link
+                          key={submenuItem.name}
+                          href={submenuItem.href}
+                          className="block py-1 text-sm text-gray-600 hover:text-blue-600"
+                        >
+                          {submenuItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </nav>
+      </aside>
     </>
   );
 }

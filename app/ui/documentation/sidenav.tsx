@@ -3,18 +3,15 @@ import NavLinks from "@/app/ui/documentation/nav-links";
 import AcmeLogo from "@/app/ui/acme-logo";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "auth";
+import { Search } from "lucide-react";
 
 export default function SideNav() {
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
-      <Link
-        className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
-        href="/documentation"
-      >
-        <div className="w-32 text-white md:w-40">
-          <AcmeLogo />
-        </div>
-      </Link>
+      <div className="flex items-center gap-3 mb-8">
+        <Search className="w-6 h-6 text-gray-400" />
+        <h1 className="text-xl font-semibold text-gray-900">Documentation</h1>
+      </div>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>

@@ -1,6 +1,4 @@
-import Link from "next/link";
 import NavLinks from "@/app/ui/documentation/nav-links";
-import AcmeLogo from "@/app/ui/acme-logo";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "auth";
 import { Search } from "lucide-react";

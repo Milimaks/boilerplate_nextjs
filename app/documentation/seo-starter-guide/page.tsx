@@ -1,8 +1,25 @@
-export default async function Page() {
+"use client";
+
+import { useArticleProgress } from "@/app/lib/custom-hooks";
+import { ArticleProgress } from "@/app/ui/articleProgess";
+import { useEffect } from "react";
+
+export default function Page() {
+  const sections = [
+    { id: "what-is-seo", title: "What is SEO?" },
+    { id: "why-seo", title: "Why is SEO Important?" },
+    { id: "getting-started", title: "Getting Started" },
+    { id: "best-practices", title: "Best Practices" },
+  ];
+
+  const activeSection = useArticleProgress(sections);
+
   return (
-    <main>
-      <div className="max-w-4xl px-4 py-8">
-        <h1 className="text-3xl font-bold  mb-6">Introduction au SEO</h1>
+    <main className="flex flex-row justify-center">
+      <div id="content" className="max-w-4xl px-4 py-8  ">
+        <h1 id="what-is-seo" className="text-3xl font-bold  mb-6">
+          Introduction au SEO
+        </h1>
         <p className="text-md text-gray-600 leading-relaxed mb-6">
           Le SEO (Search Engine Optimization) désigne l'ensemble des techniques
           visant à améliorer la visibilité d'un site web dans les résultats des
@@ -20,7 +37,9 @@ export default async function Page() {
           place pour optimiser rapidement votre site.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-4">Outils et méthodes SEO</h2>
+        <h2 id="why-seo" className="text-2xl font-semibold mb-4">
+          Outils et méthodes SEO
+        </h2>
         <ul className="space-y-3">
           <li>
             <strong>Web Core Vitals</strong>: Mesure la performance du site à
@@ -115,7 +134,9 @@ export default async function Page() {
           </li>
         </ul>
 
-        <h2 className="text-2xl font-semibold mt-8">Conclusion</h2>
+        <h2 id="getting-started" className="text-2xl font-semibold mt-8">
+          Conclusion
+        </h2>
         <p className="text-lg leading-relaxed">
           En appliquant ces méthodes et en utilisant les outils mentionnés
           ci-dessus, vous pouvez significativement améliorer la performance SEO
@@ -125,6 +146,63 @@ export default async function Page() {
           meilleur classement dans les moteurs de recherche et attirer davantage
           de visiteurs.
         </p>
+        <p className="text-lg leading-relaxed">
+          En appliquant ces méthodes et en utilisant les outils mentionnés
+          ci-dessus, vous pouvez significativement améliorer la performance SEO
+          de votre site. Que ce soit par l'optimisation de la vitesse de
+          chargement, la création de contenu de qualité, ou la mise en place de
+          bonnes pratiques de backlinks, chaque action compte pour atteindre un
+          meilleur classement dans les moteurs de recherche et attirer davantage
+          de visiteurs.
+        </p>
+        <p className="text-lg leading-relaxed">
+          En appliquant ces méthodes et en utilisant les outils mentionnés
+          ci-dessus, vous pouvez significativement améliorer la performance SEO
+          de votre site. Que ce soit par l'optimisation de la vitesse de
+          chargement, la création de contenu de qualité, ou la mise en place de
+          bonnes pratiques de backlinks, chaque action compte pour atteindre un
+          meilleur classement dans les moteurs de recherche et attirer davantage
+          de visiteurs.
+        </p>
+        <p className="text-lg leading-relaxed">
+          En appliquant ces méthodes et en utilisant les outils mentionnés
+          ci-dessus, vous pouvez significativement améliorer la performance SEO
+          de votre site. Que ce soit par l'optimisation de la vitesse de
+          chargement, la création de contenu de qualité, ou la mise en place de
+          bonnes pratiques de backlinks, chaque action compte pour atteindre un
+          meilleur classement dans les moteurs de recherche et attirer davantage
+          de visiteurs.
+        </p>
+        <p className="text-lg leading-relaxed">
+          En appliquant ces méthodes et en utilisant les outils mentionnés
+          ci-dessus, vous pouvez significativement améliorer la performance SEO
+          de votre site. Que ce soit par l'optimisation de la vitesse de
+          chargement, la création de contenu de qualité, ou la mise en place de
+          bonnes pratiques de backlinks, chaque action compte pour atteindre un
+          meilleur classement dans les moteurs de recherche et attirer davantage
+          de visiteurs.
+        </p>
+        <p className="text-lg leading-relaxed">
+          En appliquant ces méthodes et en utilisant les outils mentionnés
+          ci-dessus, vous pouvez significativement améliorer la performance SEO
+          de votre site. Que ce soit par l'optimisation de la vitesse de
+          chargement, la création de contenu de qualité, ou la mise en place de
+          bonnes pratiques de backlinks, chaque action compte pour atteindre un
+          meilleur classement dans les moteurs de recherche et attirer davantage
+          de visiteurs.
+        </p>
+        <h2 id="best-practices" className="text-2xl font-semibold mt-8">
+          Conclusion
+        </h2>
+      </div>
+      {/* Progression de l'article en sticky */}
+      <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
+        <ArticleProgress
+          sections={sections.map((section) => ({
+            ...section,
+            isActive: section.id === activeSection,
+          }))}
+        />
       </div>
     </main>
   );

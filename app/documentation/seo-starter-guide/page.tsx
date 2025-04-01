@@ -2,6 +2,7 @@
 
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
+import { SeoElements } from "@/app/ui/documentation/seoElements";
 import { useEffect } from "react";
 
 export default function Page() {
@@ -36,7 +37,7 @@ export default function Page() {
           Voici une liste des principaux outils et pratiques SEO à mettre en
           place pour optimiser rapidement votre site.
         </p>
-
+        <SeoElements />
         <h2 id="why-seo" className="text-2xl font-semibold mb-4">
           Outils et méthodes SEO
         </h2>

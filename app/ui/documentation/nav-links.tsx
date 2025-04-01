@@ -38,6 +38,16 @@ const links: NavSection[] = [
         name: "Principes du SEO",
         href: "/documentation/seo-starter-guide",
         icon: DocumentDuplicateIcon,
+        submenu: [
+          {
+            name: "robots.txt",
+            href: "/documentation/robots-txt",
+          },
+          {
+            name: "Web Core Vitals",
+            href: "/documentation/web-core-vitals",
+          },
+        ],
       },
       {
         name: "Architecture",

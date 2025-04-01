@@ -3,7 +3,6 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { Code } from "@/app/ui/code";
-import { SeoElements } from "@/app/ui/documentation/seoElements";
 import Link from "next/link";
 
 export default function Page() {

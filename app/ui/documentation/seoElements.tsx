@@ -1,13 +1,13 @@
 import React from "react";
 
-interface SeoElementsProps {
+interface SeoElementProps {
   title: string;
   description: string;
   href: string;
   gradient?: string;
 }
 
-const seoElements: SeoElementsProps[] = [
+const seoElements: SeoElementProps[] = [
   {
     title: "Web Core Vitals",
     description:
@@ -19,18 +19,6 @@ const seoElements: SeoElementsProps[] = [
     description:
       "Analyse la vitesse de votre site et propose des recommandations pour améliorer sa rapidité.",
     href: "/documentation/pagespeed-insights",
-  },
-  {
-    title: "Sitemap",
-    description:
-      "Un fichier qui permet aux moteurs de recherche de découvrir et d'indexer toutes les pages de votre site.",
-    href: "/documentation/sitemap",
-  },
-  {
-    title: "robots.txt",
-    description:
-      "Indique aux moteurs de recherche les pages qu'ils doivent ou ne doivent pas explorer sur votre site.",
-    href: "/documentation/robots-txt",
   },
   {
     title: "Google Search Console",
@@ -50,6 +38,9 @@ const seoElements: SeoElementsProps[] = [
       "Simplifie l'optimisation SEO sur chaque page en vous aidant à gérer les balises méta, les titres et descriptions.",
     href: "/documentation/yoast-seo",
   },
+];
+
+const seoPractices: SeoElementProps[] = [
   {
     title: "Backlinks",
     description:
@@ -61,12 +52,6 @@ const seoElements: SeoElementsProps[] = [
     description:
       "La recherche et l'intégration de mots-clés pertinents sont essentielles pour apparaître dans les résultats de recherche.",
     href: "/documentation/keyword-optimization",
-  },
-  {
-    title: "Structure URL claire",
-    description:
-      "Une URL bien structurée, concise et descriptive est cruciale pour le SEO et l'expérience utilisateur.",
-    href: "/documentation/url-structure",
   },
   {
     title: "Optimisation mobile",
@@ -86,48 +71,12 @@ const seoElements: SeoElementsProps[] = [
       "Publiez des articles ou pages utiles, bien rédigés et régulièrement mis à jour, répondant aux besoins des utilisateurs.",
     href: "/documentation/quality-content",
   },
-  {
-    title: "Balises H1, H2, H3",
-    description:
-      "Utilisez ces balises pour structurer votre contenu et aider Google à mieux comprendre le sujet de chaque page.",
-    href: "/documentation/heading-tags",
-  },
-  {
-    title: "Balise Meta Description",
-    description:
-      "Ajoutez des descriptions concises et accrocheuses qui apparaîtront dans les résultats de recherche et inciteront les utilisateurs à cliquer.",
-    href: "/documentation/meta-description",
-  },
-  {
-    title: "Rich Snippets",
-    description:
-      "Utilisez des données structurées (schema.org) pour enrichir l'apparence de vos pages dans les résultats de recherche.",
-    href: "/documentation/rich-snippets",
-  },
-  {
-    title: "HTTPS",
-    description:
-      "Un certificat SSL assure la sécurité de votre site, renforce la confiance des utilisateurs et améliore le classement dans Google.",
-    href: "/documentation/https",
-  },
-  {
-    title: "Vitesse de chargement",
-    description:
-      "Optimisez les éléments du site pour réduire le temps de chargement, ce qui améliore l'expérience utilisateur et le classement.",
-    href: "/documentation/loading-speed",
-  },
-  {
-    title: "Social Media Sharing",
-    description:
-      "Facilitez le partage de contenu sur les réseaux sociaux pour augmenter la visibilité et générer du trafic.",
-    href: "/documentation/social-media-sharing",
-  },
 ];
 
-export function SeoElements() {
+function SeoGrid({ elements }: { elements: SeoElementProps[] }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {seoElements.map((element) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+      {elements.map((element) => (
         <a
           key={element.href}
           href={element.href}
@@ -148,4 +97,12 @@ export function SeoElements() {
       ))}
     </div>
   );
+}
+
+export function SeoTools() {
+  return <SeoGrid elements={seoElements} />;
+}
+
+export function SeoPractices() {
+  return <SeoGrid elements={seoPractices} />;
 }

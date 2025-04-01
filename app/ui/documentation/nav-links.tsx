@@ -40,7 +40,7 @@ const links: NavSection[] = [
         icon: DocumentDuplicateIcon,
         submenu: [
           {
-            name: "robots.txt",
+            name: "Robots.txt",
             href: "/documentation/robots-txt",
           },
           {
@@ -169,7 +169,10 @@ export default function NavLinks() {
                         <Link
                           key={submenuItem.name}
                           href={submenuItem.href}
-                          className="block py-1 text-sm text-gray-600 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 ease-in-out"
+                          className={cn(
+                            "block py-1 text-sm text-gray-600 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 ease-in-out",
+                            { "text-blue-600": pathname === submenuItem.href }
+                          )}
                         >
                           {submenuItem.name}
                         </Link>

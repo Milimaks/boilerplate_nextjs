@@ -3,6 +3,10 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { Code } from "@/app/ui/code";
+import { links } from "@/app/ui/documentation/seo-starter-guide/data";
+import { Footer } from "@/app/ui/documentation/seo-starter-guide/footer";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export default function Page() {
@@ -22,15 +26,36 @@ export default function Page() {
           Les Sitemaps et leur importance
         </h1>
         <p className="mb-4">
-          Les sitemaps sont le moyen le plus simple de communiquer avec Google.
-          Ils indiquent les URL appartenant à votre site web et signalent les
-          mises à jour afin que Google puisse détecter plus facilement le
-          nouveau contenu et explorer votre site plus efficacement.
+          Les <strong>sitemaps</strong> sont le moyen le plus simple de
+          communiquer avec Google. Ils indiquent les URL appartenant à votre
+          site web et signalent les mises à jour afin que Google puisse détecter
+          plus facilement le nouveau contenu et explorer votre site plus
+          efficacement.
         </p>
         <p className="mb-4">
           Bien que les sitemaps XML soient les plus connus et les plus utilisés,
-          ils peuvent aussi être créés via RSS, Atom, ou même via des fichiers
-          texte pour une simplicité maximale.
+          ils peuvent aussi être créés via{" "}
+          <Link
+            href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+            className={buttonVariants({ variant: "link" })}
+          >
+            RSS
+          </Link>
+          ,{" "}
+          <Link
+            href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+            className={buttonVariants({ variant: "link" })}
+          >
+            Atom
+          </Link>
+          , ou même via des fichiers
+          <Link
+            href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+            className={cn(buttonVariants({ variant: "link" }), "pl-1 pr-1")}
+          >
+            Text
+          </Link>
+          pour une simplicité maximale.
         </p>
         <p className="mb-4">
           Un sitemap est un fichier où vous fournissez des informations sur les
@@ -141,6 +166,7 @@ export default function Page() {
            
           export default SiteMap;`}
         </Code>
+        <Footer links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">

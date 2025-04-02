@@ -3,6 +3,9 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { Code } from "@/app/ui/code";
+import { links } from "@/app/ui/documentation/seo-starter-guide/data";
+import { Footer } from "@/app/ui/documentation/seo-starter-guide/footer";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Page() {
@@ -33,7 +36,7 @@ export default function Page() {
           Un{" "}
           <Link
             href="https://developers.google.com/search/docs/advanced/robots/intro"
-            className="text-blue-500 hover:underline"
+            className={buttonVariants({ variant: "link" })}
           >
             fichier robots.txt
           </Link>{" "}
@@ -42,7 +45,7 @@ export default function Page() {
           robots.txt est une norme web que la plupart des{" "}
           <Link
             href="https://www.cloudflare.com/learning/bots/how-to-manage-good-bots/"
-            className="text-blue-500 hover:underline"
+            className={buttonVariants({ variant: "link" })}
           >
             bons robots
           </Link>{" "}
@@ -95,8 +98,8 @@ Disallow: /secret-page.html
 # Specify the sitemap location
 Sitemap: https://www.example.com/sitemap.xml`}
         </Code>
+        <Footer links={links} className="pt-20 pb-6" />
       </div>
-
       {/* Progress of the article */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
         <ArticleProgress

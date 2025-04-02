@@ -2,6 +2,8 @@
 
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
+import { links } from "@/app/ui/documentation/seo-starter-guide/data";
+import { Footer } from "@/app/ui/documentation/seo-starter-guide/footer";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -144,6 +146,7 @@ export default function Page() {
             <li>Utiliser des techniques de mise en cache et un CDN.</li>
           </ul>
         </section>
+        <Footer links={links} className="pt-20 pb-6" />
       </div>
 
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">

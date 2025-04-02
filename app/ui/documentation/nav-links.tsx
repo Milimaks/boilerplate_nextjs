@@ -15,7 +15,7 @@ import { useState } from "react";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
-const links: NavSection[] = [
+export const links: NavSection[] = [
   {
     title: "Getting Started",
     items: [

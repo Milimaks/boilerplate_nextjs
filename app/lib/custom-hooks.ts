@@ -13,7 +13,6 @@ export function useArticleProgress(sections: Section[]) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("entry", entry.target.id);
             setActiveSection(entry.target.id);
           }
         });

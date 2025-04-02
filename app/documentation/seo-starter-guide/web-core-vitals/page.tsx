@@ -38,8 +38,9 @@ export default function Page() {
             >
               Web Vitals
             </Link>{" "}
-            is an initiative created by Google to provide unified guidance and
-            metrics to measure end-user page experience on the web.
+            est une initiative créée par Google pour fournir des directives
+            unifiées et des métriques permettant de mesurer l'expérience
+            utilisateur des pages web.
           </p>
           <br />
           <p>
@@ -49,9 +50,9 @@ export default function Page() {
             >
               Core Web Vitals
             </Link>{" "}
-            is a subset of Web Vitals, and currently consists of three metrics
-            that measure loading, interactivity, and visual stability. These
-            metrics are{" "}
+            est un sous-ensemble de Web Vitals, qui se compose actuellement de
+            trois métriques mesurant le chargement, l'interactivité et la
+            stabilité visuelle. Ces métriques sont{" "}
             <Link
               className={buttonVariants({ variant: "link" })}
               href="#largest-contentful-paint"
@@ -63,10 +64,9 @@ export default function Page() {
               className={buttonVariants({ variant: "link" })}
               href="#input-delay"
             >
-              {" "}
-              First Input Delay (FID){" "}
+              First Input Delay (FID)
             </Link>
-            , and
+            , et
             <Link
               className={buttonVariants({ variant: "link" })}
               href="#cumulative-layout-shift"
@@ -75,6 +75,7 @@ export default function Page() {
             </Link>
             .
           </p>
+
           <h2 className="text-2xl font-semibold pt-4">
             Les trois indicateurs clés
           </h2>

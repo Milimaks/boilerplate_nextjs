@@ -6,6 +6,8 @@ import { links } from "@/app/ui/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { Code } from "@/app/ui/code";
 
 export default function Page() {
   const sections = [
@@ -122,6 +124,13 @@ export default function Page() {
               inattendus d'éléments sur la page.
             </li>
           </ul>
+          <Image
+            width={850}
+            height={300}
+            className="w-full pt-4"
+            alt="Web Core Vitals"
+            src="/vitals-light.png"
+          ></Image>
         </section>
 
         <section id="importance" className="mb-6">
@@ -145,6 +154,145 @@ export default function Page() {
             </li>
             <li>Utiliser des techniques de mise en cache et un CDN.</li>
           </ul>
+        </section>
+
+        <section id="Largest-contentful-paint" className="mb-6">
+          <h2 className="text-2xl font-semibold">
+            LCP (Largest Contentful Paint)
+          </h2>
+          <p>
+            <strong>The Largest Contentful Paint (LCP)</strong> metric looks at
+            the loading performance of your page. LCP measures the time it takes
+            to get the largest element on the page visible within the viewport.
+            This could be a large text block, video, or image that takes up the
+            primary real estate on the page.
+          </p>
+          <br />
+          <p>
+            As the DOM is rendered, the largest element on the page may change.
+            The Largest Contentful Paint doesn't stop counting until the largest
+            image orelement is seen on-screen.
+          </p>
+          <p>
+            Voici quelques optimisations spécifiques à Next.js pour améliorer le
+            LCP :
+          </p>
+          <br />
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              1. Optimiser les images avec{" "}
+              <code className="bg-gray-100 px-1 rounded">next/image</code>
+            </h2>
+            <p className="text-gray-700">
+              Utiliser le composant{" "}
+              <code className="bg-gray-100 px-1 rounded">{"<Image>"}</code> de
+              Next.js qui applique automatiquement le lazy loading, le
+              redimensionnement, et la compression des images.
+            </p>
+            <div className="mt-4">
+              <Image
+                src="/hero-image.jpg"
+                alt="Hero Image"
+                width={1200}
+                height={600}
+                priority
+                className="rounded-lg shadow-md"
+              />
+            </div>
+            <p className="mt-4 text-gray-700">
+              <strong>Astuce :</strong> Ajouter{" "}
+              <code className="bg-gray-100 px-1 rounded">priority</code> pour
+              les images importantes comme celles du{" "}
+              <strong>hero section</strong>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              2. Charger le CSS de manière optimisée
+            </h2>
+            <p className="text-gray-700">
+              Utiliser <strong>CSS Modules</strong> ou{" "}
+              <strong>TailwindCSS</strong> au lieu de styles globaux qui peuvent
+              ralentir le rendu.
+            </p>
+            <p className="text-gray-700">
+              Éviter le blocking CSS en limitant l'importation excessive de
+              fichiers CSS externes.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              3. Précharger les polices Web
+            </h2>
+            <p className="text-gray-700">
+              Google Fonts peut impacter le LCP. Utilisez{" "}
+              <code className="bg-gray-100 px-1 rounded">next/font</code> pour
+              optimiser leur chargement :
+            </p>
+            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+              <code>
+                {`import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+<main className={inter.className}>Mon site</main>`}
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              4. Optimiser le rendu côté serveur (SSR) ou statique (SSG)
+            </h2>
+            <p className="text-gray-700">
+              Privilégier{" "}
+              <code className="bg-gray-100 px-1 rounded">
+                getServerSideProps
+              </code>{" "}
+              ou{" "}
+              <code className="bg-gray-100 px-1 rounded">getStaticProps</code>{" "}
+              pour charger rapidement le contenu principal.
+            </p>
+            <p className="text-gray-700">
+              Utiliser <strong>ISR (Incremental Static Regeneration)</strong>{" "}
+              pour améliorer la performance.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              5. Utiliser{" "}
+              <code className="bg-gray-100 px-1 rounded">next/script</code> pour
+              charger les scripts de manière optimale
+            </h2>
+            <p className="text-gray-700">
+              Charger les scripts en <strong>"lazy"</strong> ou{" "}
+              <strong>"beforeInteractive"</strong> selon leur importance :
+            </p>
+            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+              <code>
+                {`import Script from "next/script";
+
+<Script src="https://example.com/script.js" strategy="lazyOnload" />`}
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              6. Optimiser le cache et l'hébergement
+            </h2>
+            <p className="text-gray-700">
+              Utiliser un <strong>CDN</strong> (Vercel, Cloudflare) pour charger
+              le contenu plus rapidement.
+            </p>
+            <p className="text-gray-700">
+              Activer la compression <strong>Gzip</strong> ou{" "}
+              <strong>Brotli</strong> sur le serveur.
+            </p>
+          </section>
         </section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>

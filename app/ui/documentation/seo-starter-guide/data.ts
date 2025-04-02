@@ -18,8 +18,8 @@ export const links: NavigationMenuItem[] = [
     href: "/documentation/seo-starter-guide/web-core-vitals",
   },
   {
-    name: "Site Map",
-    href: "/documentation/seo-starter-guide/site-map",
+    name: "Sitemap",
+    href: "/documentation/seo-starter-guide/sitemap",
   },
   {
     name: "SEO Tools",

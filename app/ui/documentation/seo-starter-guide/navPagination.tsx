@@ -1,4 +1,3 @@
-import { NavSection } from "@/app/lib/definitions";
 import {
   Pagination,
   PaginationContent,

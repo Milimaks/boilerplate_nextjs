@@ -3,20 +3,18 @@ import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { link } from "fs";
 import { usePathname } from "next/navigation";
 import { NavigationMenuItem } from "./data";
 
-interface FooterProps {
+interface NavPaginationProps {
   links: NavigationMenuItem[];
   className?: string;
 }
 
-export function Footer({ links, className }: FooterProps) {
+export function NavPagination({ links, className }: NavPaginationProps) {
   const pathname = usePathname();
   // Find the active link based on the current pathname
   const activeIndex = links.findIndex((link) => pathname === link.href);

@@ -3,7 +3,7 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { Footer } from "@/app/ui/documentation/seo-starter-guide/footer";
+import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
 import { SeoPractices, SeoTools } from "@/app/ui/documentation/seoElements";
 
 export default function Page() {
@@ -158,7 +158,7 @@ export default function Page() {
         <h2 id="best-practices" className="text-2xl font-semibold mt-8">
           Conclusion
         </h2>
-        <Footer links={links} className="pt-20 pb-6" />
+        <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progression de l'article en sticky */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">

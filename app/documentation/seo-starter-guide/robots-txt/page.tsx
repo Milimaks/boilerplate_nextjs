@@ -4,7 +4,7 @@ import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { Code } from "@/app/ui/code";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { Footer } from "@/app/ui/documentation/seo-starter-guide/footer";
+import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -98,7 +98,7 @@ Disallow: /secret-page.html
 # Specify the sitemap location
 Sitemap: https://www.example.com/sitemap.xml`}
         </Code>
-        <Footer links={links} className="pt-20 pb-6" />
+        <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">

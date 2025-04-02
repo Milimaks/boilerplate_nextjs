@@ -12,7 +12,7 @@ const seoElements: SeoElementProps[] = [
     title: "Web Core Vitals",
     description:
       "Mesure la performance du site à travers des indicateurs tels que CLS, INP et LCP qui influencent l'expérience utilisateur.",
-    href: "/documentation/web-core-vitals",
+    href: "/documentation/seo-starter-guide/web-core-vitals",
   },
   {
     title: "PageSpeed Insights",

@@ -41,11 +41,11 @@ const links: NavSection[] = [
         submenu: [
           {
             name: "Robots.txt",
-            href: "/documentation/robots-txt",
+            href: "/documentation/seo-starter-guide/robots-txt",
           },
           {
             name: "Web Core Vitals",
-            href: "/documentation/web-core-vitals",
+            href: "/documentation/seo-starter-guide/web-core-vitals",
           },
         ],
       },

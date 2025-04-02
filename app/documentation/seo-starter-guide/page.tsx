@@ -4,7 +4,12 @@ import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
-import { SeoPractices, SeoTools } from "@/app/ui/documentation/seoElements";
+import {
+  SeoOffPage,
+  SeoOnPage,
+  SeoTechnique,
+  SeoTools,
+} from "@/app/ui/documentation/seoElements";
 
 export default function Page() {
   const sections = [
@@ -38,10 +43,21 @@ export default function Page() {
           Voici une liste des principaux outils et pratiques SEO à mettre en
           place pour optimiser rapidement votre site.
         </p>
-        <h2 className="text-3xl font-bold text-gray-800">Principaux outils</h2>
+        <h2 className="text-3xl font-bold text-gray-800 pb-4">
+          Les trois piliers du SEO
+        </h2>
+        <h3 className="text-2xl font-bold text-gray-800">1. SEO Technique</h3>
+        <SeoTechnique />
+        <h3 className="text-2xl font-bold text-gray-800 pt-6">
+          2. SEO On-Page
+        </h3>
+        <SeoOnPage />
+        <h3 className="text-2xl font-bold text-gray-800 pt-6">
+          3. SEO Off-Page
+        </h3>
+        <SeoOffPage />
+        <h2 className="text-3xl font-bold text-gray-800 pt-6">Les outils</h2>
         <SeoTools />
-        <h2 className="text-3xl font-bold text-gray-800 pt-6">Pratiques SEO</h2>
-        <SeoPractices />
         <div className="p-6 font-sans">
           <h1 id="research-system" className="text-3xl font-bold text-gray-800">
             Les Systèmes de Recherche

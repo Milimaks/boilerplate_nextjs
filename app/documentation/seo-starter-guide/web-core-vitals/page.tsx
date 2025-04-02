@@ -161,18 +161,26 @@ export default function Page() {
             LCP (Largest Contentful Paint)
           </h2>
           <p>
-            <strong>The Largest Contentful Paint (LCP)</strong> metric looks at
-            the loading performance of your page. LCP measures the time it takes
-            to get the largest element on the page visible within the viewport.
-            This could be a large text block, video, or image that takes up the
-            primary real estate on the page.
+            La métrique <strong> Largest Contentful Paint (LCP)</strong> évalue
+            les performances de chargement de votre page. LCP mesure le temps
+            nécessaire pour afficher le plus grand élément de la page dans la
+            zone visible de l'écran. Il peut s'agir d'un grand bloc de texte,
+            d'une vidéo ou d'une image occupant l'espace principal de la page.
           </p>
           <br />
           <p>
-            As the DOM is rendered, the largest element on the page may change.
-            The Largest Contentful Paint doesn't stop counting until the largest
-            image orelement is seen on-screen.
+            Au fur et à mesure du rendu du DOM, le plus grand élément de la page
+            peut changer. Le Largest Contentful Paint continue de mesurer
+            jusqu'à ce que l'image ou l'élément le plus grand soit affiché à
+            l'écran.
           </p>
+
+          <Image
+            width={1000}
+            height={300}
+            src={"/lcp-example.png"}
+            alt={"lcp example"}
+          ></Image>
           <p>
             Voici quelques optimisations spécifiques à Next.js pour améliorer le
             LCP :
@@ -189,16 +197,17 @@ export default function Page() {
               Next.js qui applique automatiquement le lazy loading, le
               redimensionnement, et la compression des images.
             </p>
-            <div className="mt-4">
-              <Image
-                src="/hero-image.jpg"
-                alt="Hero Image"
-                width={1200}
-                height={600}
-                priority
-                className="rounded-lg shadow-md"
-              />
-            </div>
+            <Code>
+              {`
+<Image
+  src="/hero-image.jpg"
+  alt="Hero Image"
+  width={1200}
+  height={600}
+  priority
+  className="rounded-lg shadow-md"
+/>`}
+            </Code>
             <p className="mt-4 text-gray-700">
               <strong>Astuce :</strong> Ajouter{" "}
               <code className="bg-gray-100 px-1 rounded">priority</code> pour

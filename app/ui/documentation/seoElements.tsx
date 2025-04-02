@@ -3,17 +3,11 @@ import React from "react";
 interface SeoElementProps {
   title: string;
   description: string;
-  href: string;
+  href?: string;
   gradient?: string;
 }
 
 const seoElements: SeoElementProps[] = [
-  {
-    title: "Web Core Vitals",
-    description:
-      "Mesure la performance du site à travers des indicateurs tels que CLS, INP et LCP qui influencent l'expérience utilisateur.",
-    href: "/documentation/seo-starter-guide/web-core-vitals",
-  },
   {
     title: "PageSpeed Insights",
     description:
@@ -40,30 +34,82 @@ const seoElements: SeoElementProps[] = [
   },
 ];
 
-const seoPractices: SeoElementProps[] = [
+const seoTechnique: SeoElementProps[] = [
   {
-    title: "Backlinks",
+    title: "Web Core Vitals",
     description:
-      "L'acquisition de liens entrants de qualité augmente l'autorité de votre site et améliore son classement.",
-    href: "/documentation/backlinks",
+      "Mesure la performance du site à travers des indicateurs tels que CLS, INP et LCP qui influencent l'expérience utilisateur.",
+    href: "/documentation/seo-starter-guide/web-core-vitals",
   },
   {
-    title: "Optimisation des mots-clés",
+    title: "Sitemap",
     description:
-      "La recherche et l'intégration de mots-clés pertinents sont essentielles pour apparaître dans les résultats de recherche.",
-    href: "/documentation/keyword-optimization",
+      "Un fichier XML qui liste toutes les pages de votre site pour aider les moteurs de recherche à les explorer et indexer.",
+    href: "/documentation/seo-starter-guide/sitemap",
   },
   {
-    title: "Optimisation mobile",
+    title: "Robots.txt",
     description:
-      "Assurez-vous que votre site soit responsive et bien optimisé pour les appareils mobiles, un critère de classement important pour Google.",
-    href: "/documentation/mobile-optimization",
+      "Un fichier qui indique aux moteurs de recherche quelles pages explorer ou ignorer sur votre site.",
+    href: "/documentation/seo-starter-guide/robots-txt",
+  },
+  {
+    title: "Métadonnées",
+    description:
+      "Utilisez des balises méta pour fournir des informations sur le contenu de votre page, comme le titre, la description et les mots-clés.",
+    href: "/documentation/seo-starter-guide/metadata",
+  },
+  {
+    title: "Responsive Design",
+    description:
+      "Assurez-vous que votre site est adapté aux mobiles et aux tablettes pour une meilleure expérience utilisateur.",
+  },
+];
+const seoOnPage: SeoElementProps[] = [
+  {
+    title: "Contenu de qualité",
+    description:
+      "Publiez des articles ou pages utiles, bien rédigés et régulièrement mis à jour.",
+  },
+  {
+    title: "Balises Hn",
+    description:
+      "Balises H1, H2, H3, etc. pour structurer son contenu et faciliter la lecture par les moteurs de recherche.",
   },
   {
     title: "Optimisation des images",
+    description: "Balises ALT, compression, format adapté",
+  },
+  {
+    title: "Liens internes",
     description:
-      "Réduisez la taille des images pour accélérer le temps de chargement sans perdre en qualité.",
-    href: "/documentation/image-optimization",
+      "Liens internes pour une meilleure navigation et répartition du PageRank",
+  },
+];
+const seoOffPage: SeoElementProps[] = [
+  {
+    title: "Web Core Vitals",
+    description:
+      "Mesure la performance du site à travers des indicateurs tels que CLS, INP et LCP qui influencent l'expérience utilisateur.",
+    href: "/documentation/seo-starter-guide/web-core-vitals",
+  },
+  {
+    title: "Sitemap",
+    description:
+      "Un fichier XML qui liste toutes les pages de votre site pour aider les moteurs de recherche à les explorer et indexer.",
+    href: "/documentation/seo-starter-guide/sitemap",
+  },
+  {
+    title: "Robots.txt",
+    description:
+      "Un fichier qui indique aux moteurs de recherche quelles pages explorer ou ignorer sur votre site.",
+    href: "/documentation/seo-starter-guide/robots-txt",
+  },
+  {
+    title: "Métadonnées",
+    description:
+      "Utilisez des balises méta pour fournir des informations sur le contenu de votre page, comme le titre, la description et les mots-clés.",
+    href: "/documentation/seo-starter-guide/metadata",
   },
   {
     title: "Contenu de qualité",
@@ -78,7 +124,7 @@ function SeoGrid({ elements }: { elements: SeoElementProps[] }) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
       {elements.map((element) => (
         <a
-          key={element.href}
+          key={element.title}
           href={element.href}
           className={`block p-6 rounded-lg bg-gradient-to-br ${
             element.gradient ? element.gradient : "bg-white"
@@ -103,6 +149,12 @@ export function SeoTools() {
   return <SeoGrid elements={seoElements} />;
 }
 
-export function SeoPractices() {
-  return <SeoGrid elements={seoPractices} />;
+export function SeoTechnique() {
+  return <SeoGrid elements={seoTechnique} />;
+}
+export function SeoOnPage() {
+  return <SeoGrid elements={seoOnPage} />;
+}
+export function SeoOffPage() {
+  return <SeoGrid elements={seoOffPage} />;
 }

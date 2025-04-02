@@ -10,8 +10,8 @@ export function ArticleProgress({ sections }: ArticleProgressProps) {
   return (
     <div className=" left-6  space-y-4">
       {sections.map((section, index) => (
-        <div key={section.id} className="flex flex-col items-center">
-          <div className="flex items-center gap-3">
+        <ul key={section.id} className="flex flex-col">
+          <li className="flex items-center gap-3">
             <div
               className={`h-3 aspect-square rounded-full transition-colors duration-200 ${
                 section.isActive
@@ -29,11 +29,8 @@ export function ArticleProgress({ sections }: ArticleProgressProps) {
             >
               {section.title}
             </a>
-          </div>
-          {index < sections.length - 1 && (
-            <div className="h-8 w-px mx-auto my-1 bg-gray-200" />
-          )}
-        </div>
+          </li>
+        </ul>
       ))}
     </div>
   );

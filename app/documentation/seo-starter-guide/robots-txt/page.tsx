@@ -11,10 +11,10 @@ import Link from "next/link";
 
 export default function Page() {
   const sections = [
-    { id: "what-is-seo", title: "What is SEO?" },
-    { id: "why-seo", title: "Why is SEO Important?" },
-    { id: "getting-started", title: "Getting Started" },
-    { id: "best-practices", title: "Best Practices" },
+    { id: "introduction", title: "Introduction" },
+    { id: "robots-static", title: "Robots.txt static" },
+    { id: "robots-dynamic", title: "Robots.txt dynamic" },
+    { id: "conclusion", title: "conclusion" },
   ];
 
   const activeSection = useArticleProgress(sections);
@@ -24,7 +24,7 @@ export default function Page() {
       <div id="content" className="max-w-4xl px-4">
         {/* Robots.txt purpose explanation */}
         <div className="mb-6">
-          <h1 id="what-is-seo" className="text-3xl font-bold">
+          <h1 id="introduction" className="text-3xl font-bold">
             Quel est l'objectif d'un fichier robots.txt ?
           </h1>
 
@@ -66,26 +66,27 @@ export default function Page() {
           <br />
           <br />
         </p>
-        {/* How to add Robots.txt file */}
-        <h2 className="scroll-m-20 pb-6 text-2xl font-semibold tracking-tight first:mt-0">
-          Comment ajouter un fichier robots.txt à un projet Next.js ?
-        </h2>
+        {/* How to add static Robots.txt file */}
+        <section id="robots-static">
+          <h2 className="scroll-m-20 pb-6 text-2xl font-semibold tracking-tight first:mt-0">
+            Comment ajouter un fichier robots.txt à un projet Next.js ?
+          </h2>
 
-        <h3 className="text-xl font-semibold mb-4">1. Static</h3>
-        <p>
-          Grâce à la gestion des fichiers statiques dans Next.js, nous pouvons
-          facilement ajouter un fichier{" "}
-          <span className="bg-gray-200 p-1 rounded-md ml-1 mr-1">
-            /robots.txt
-          </span>
-          . Pour cela, il suffit de créer un nouveau fichier nommé{" "}
-          <span className="bg-gray-200 p-1 rounded-md">/robots.txt</span>
-          dans le dossier public à la racine du projet. Voici un exemple de ce
-          que vous pourriez y mettre :
-        </p>
+          <h3 className="text-xl font-semibold mb-4">1. Static</h3>
+          <p>
+            Grâce à la gestion des fichiers statiques dans Next.js, nous pouvons
+            facilement ajouter un fichier{" "}
+            <span className="bg-gray-200 p-1 rounded-md ml-1 mr-1">
+              /robots.txt
+            </span>
+            . Pour cela, il suffit de créer un nouveau fichier nommé{" "}
+            <span className="bg-gray-200 p-1 rounded-md">/robots.txt</span>
+            dans le dossier public à la racine du projet. Voici un exemple de ce
+            que vous pourriez y mettre :
+          </p>
 
-        <Code>
-          {`// public/robots.txt
+          <Code>
+            {`// public/robots.txt
 
 # Block all bots from accessing sensitive directories
 User-agent: *
@@ -102,23 +103,25 @@ Disallow: /secret-page.html
 
 # Specify the sitemap location
 Sitemap: https://www.example.com/sitemap.xml`}
-        </Code>
+          </Code>
+        </section>
+        {/* How to add dynamic Robots.txt file */}
+        <section id="robots-dynamic" className="mt-12 mb-6">
+          <h3 className="text-xl font-semibold mb-4">2. Dynamic</h3>
+          <p>
+            Next.js permet également de générer un fichier{" "}
+            <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
+            de manière dynamique en utilisant un fichier{" "}
+            <span className="bg-gray-200 p-1 rounded-md">robots.ts</span> dans
+            le dossier <span className="bg-gray-200 p-1 rounded-md">app/</span>.
+            Cela permet de personnaliser les règles en fonction du contexte de
+            l'application.
+          </p>
 
-        <h3 className="text-xl font-semibold mb-4">2. Dynamic</h3>
-        <p>
-          Next.js permet également de générer un fichier{" "}
-          <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
-          de manière dynamique en utilisant un fichier{" "}
-          <span className="bg-gray-200 p-1 rounded-md">robots.ts</span> dans le
-          dossier <span className="bg-gray-200 p-1 rounded-md">app/</span>. Cela
-          permet de personnaliser les règles en fonction du contexte de
-          l'application.
-        </p>
+          <p>Voici comment implémenter un fichier robots.ts :</p>
 
-        <p>Voici comment implémenter un fichier robots.ts :</p>
-
-        <Code>
-          {`// app/robots.ts
+          <Code>
+            {`// app/robots.ts
 
 export default function robots() {
   return {
@@ -136,52 +139,54 @@ export default function robots() {
     sitemap: "https://www.example.com/sitemap.xml",
   };
 }`}
-        </Code>
+          </Code>
 
-        <p>
-          Avec cette approche, Next.js générera automatiquement un fichier{" "}
-          <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
-          lorsque l'application sera déployée, sans avoir besoin d’un fichier
-          statique.
-        </p>
-        {/* Pourquoi cette méthode est meilleure ? */}
-        <Card className="p-4 bg-blue-50 border-blue-300 mt-6">
-          <CardContent>
-            <h4 className="text-lg font-semibold mb-2">
-              📌 Pourquoi cette méthode est meilleure ?
-            </h4>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>✅ Pas besoin d’écrire le fichier à la main</li>
-              <li>
-                ✅ Tu peux générer des règles dynamiquement (ex: bloquer
-                certaines pages en fonction des utilisateurs)
-              </li>
-              <li>✅ Il est bien intégré à l’App Router de Next.js</li>
-            </ul>
-          </CardContent>
-        </Card>
-
+          <p>
+            Avec cette approche, Next.js générera automatiquement un fichier{" "}
+            <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
+            lorsque l'application sera déployée, sans avoir besoin d’un fichier
+            statique.
+          </p>
+        </section>
         {/* Conclusion */}
-        <Card className="p-4 bg-green-50 border-green-300 mt-6">
-          <CardContent>
-            <h4 className="text-lg font-semibold mb-2">💡 Conclusion :</h4>
-            <p>
-              Si ton site est <strong>statiquement généré</strong>, tu peux
-              juste mettre un
-              <span className="bg-gray-200 p-1 rounded-md ml-1">
-                robots.txt
-              </span>{" "}
-              dans <code>public/robots.txt</code>.
-            </p>
-            <p>
-              Si tu veux un <strong>contrôle plus avancé</strong>, utilise
-              <span className="bg-gray-200 p-1 rounded-md ml-1">
-                app/robots.ts
-              </span>{" "}
-              !
-            </p>
-          </CardContent>
-        </Card>
+        <section id="conclusion">
+          <Card className="p-4 bg-blue-50 border-blue-300 mt-6">
+            <CardContent>
+              <h4 className="text-lg font-semibold mb-2">
+                📌 Pourquoi cette méthode est meilleure ?
+              </h4>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>✅ Pas besoin d’écrire le fichier à la main</li>
+                <li>
+                  ✅ Tu peux générer des règles dynamiquement (ex: bloquer
+                  certaines pages en fonction des utilisateurs)
+                </li>
+                <li>✅ Il est bien intégré à l’App Router de Next.js</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card className="p-4 bg-green-50 border-green-300 mt-6">
+            <CardContent>
+              <h4 className="text-lg font-semibold mb-2">💡 Conclusion :</h4>
+              <p>
+                Si ton site est <strong>statiquement généré</strong>, tu peux
+                juste mettre un
+                <span className="bg-gray-200 p-1 rounded-md ml-1">
+                  robots.txt
+                </span>{" "}
+                dans <code>public/robots.txt</code>.
+              </p>
+              <p>
+                Si tu veux un <strong>contrôle plus avancé</strong>, utilise
+                <span className="bg-gray-200 p-1 rounded-md ml-1">
+                  app/robots.ts
+                </span>{" "}
+                !
+              </p>
+            </CardContent>
+          </Card>
+        </section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}

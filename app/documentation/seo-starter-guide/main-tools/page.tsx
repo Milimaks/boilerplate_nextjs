@@ -27,9 +27,10 @@ export default function Page() {
           </h1>
         </div>
 
+        {/* PageSpeed Insights */}
         <section id="pagespeed-insights" className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">
-            PageSpeed Insights : Améliorer la performance de son site
+            <u>PageSpeed Insights :</u> Améliorer la performance de son site
           </h2>
           <p className="mb-4">
             <strong>
@@ -82,9 +83,11 @@ export default function Page() {
           />
         </section>
 
+        {/* Google Search Console */}
         <section id="google-search-console" className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">
-            Google Search Console : Suivi du référencement et de l'indexation
+            <u>Google Search Console :</u> Suivi du référencement et de
+            l'indexation
           </h2>
           <p className="mb-4">
             <strong>
@@ -144,11 +147,31 @@ export default function Page() {
             d’indexation et d’optimiser la présence d’un site dans les résultats
             de recherche.
           </p>
+          <br />
+          <p>
+            Google doit s’assurer que tu es bien propriétaire du site. Tu
+            pourras suivre les indications sur{" "}
+            <Link
+              href="https://search.google.com/search-console/welcome"
+              className={buttonVariants({ variant: "link" })}
+            >
+              {" "}
+              Google Search Console
+            </Link>
+            , en ajoutant un fichier TXT à ton domaine par exemple
+          </p>
         </section>
-
+        {/* Google Analytics */}
         <section id="google-analytics" className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">
-            Google Analytics : Suivi des visiteurs et des comportements
+            <Link href="/document" className="">
+              <u>Google Analytics</u>
+            </Link>{" "}
+            et{" "}
+            <Link href="/document">
+              <u>Google Tag Manager</u>
+            </Link>{" "}
+            : Suivi des visiteurs et des comportements
           </h2>
           <p className="mb-4">
             <strong>Google Analytics</strong> est l’outil de référence pour
@@ -158,21 +181,29 @@ export default function Page() {
           </p>
           <ul className="list-disc pl-5 mb-4">
             <li>
-              <strong>Analyse du trafic</strong> : Nombre de visiteurs, sources
-              de trafic (référencement naturel, publicité, réseaux sociaux,
-              etc.).
+              📈 Suivi des conversions :<strong>Suivi du trafic :</strong>Nombre
+              de visiteurs, sources de trafic (référencement naturel, publicité,
+              réseaux sociaux, etc.).
             </li>
             <li>
-              <strong>Comportement des utilisateurs</strong> : Pages visitées,
+              📊
+              <strong>Comportement des utilisateurs :</strong>Pages visitées,
               taux de rebond, temps passé sur le site.
             </li>
             <li>
-              <strong>Conversion et objectifs</strong> : Suivi des actions
-              importantes comme les achats, inscriptions ou téléchargements.
+              📦
+              <strong>Suivi des conversions :</strong> Actions clés (achats,
+              soumissions de formulaires).
             </li>
             <li>
-              <strong>Segmentation des utilisateurs</strong> : Données
-              démographiques, localisation, type d’appareil utilisé.
+              📍
+              <strong>Origine du trafic :</strong> Données démographiques,
+              localisation, type d’appareil utilisé.
+            </li>
+            <li>
+              🎯
+              <strong>Suivi des événements :</strong> Clics sur un bouton,
+              lecture de vidéos.
             </li>
           </ul>
           <p>

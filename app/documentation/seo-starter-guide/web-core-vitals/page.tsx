@@ -8,6 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Code } from "@/app/ui/code";
+import { InlineCode } from "@/app/ui/inlineCode";
+import { Section } from "@/app/ui/section";
 
 export default function Page() {
   const sections = [
@@ -27,14 +29,9 @@ export default function Page() {
           <h1 id="introduction" className="text-3xl font-bold">
             Web Performance & Core Web Vitals
           </h1>
-          <p className="text-md text-gray-600 opacity-60 leading-relaxed mb-6">
-            Les Web Core Vitals sont un ensemble de métriques définies par
-            Google pour mesurer la qualité de l'expérience utilisateur sur le
-            web.
-          </p>
         </div>
 
-        <section id="definition" className="mb-6">
+        <Section id="definition" className="mb-6">
           <p>
             <Link
               className={buttonVariants({ variant: "link" })}
@@ -131,9 +128,9 @@ export default function Page() {
             alt="Web Core Vitals"
             src="/vitals-light.png"
           ></Image>
-        </section>
+        </Section>
 
-        <section id="importance" className="mb-6">
+        <Section id="importance" className="mb-6">
           <h2 className="text-2xl font-semibold">
             Pourquoi sont-ils importants ?
           </h2>
@@ -142,9 +139,9 @@ export default function Page() {
             classement, ce qui signifie qu'un bon score peut améliorer le
             référencement naturel.
           </p>
-        </section>
+        </Section>
 
-        <section id="amelioration" className="mb-6">
+        <Section id="amelioration" className="mb-6">
           <h2 className="text-2xl font-semibold">Comment les améliorer ?</h2>
           <ul className="list-disc pl-6">
             <li>Optimiser les images et les ressources statiques.</li>
@@ -154,11 +151,13 @@ export default function Page() {
             </li>
             <li>Utiliser des techniques de mise en cache et un CDN.</li>
           </ul>
-        </section>
+        </Section>
 
-        <section id="Largest-contentful-paint" className="mb-6">
-          <h2 className="text-2xl font-semibold">
-            LCP (Largest Contentful Paint)
+        <Section id="Largest-contentful-paint" className="mb-6">
+          <h2 className="text-2xl font-semibold pb-4">
+            <Link href={"https://web.dev/articles/lcp"}>
+              <u> LCP (Largest Contentful Paint)</u>
+            </Link>{" "}
           </h2>
           <p>
             La métrique <strong> Largest Contentful Paint (LCP)</strong> évalue
@@ -186,14 +185,12 @@ export default function Page() {
             LCP :
           </p>
           <br />
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              1. Optimiser les images avec{" "}
-              <code className="bg-gray-100 px-1 rounded">next/image</code>
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
+              1. Optimiser les images avec <InlineCode>next/image</InlineCode>
             </h2>
-            <p className="text-gray-700">
-              Utiliser le composant{" "}
-              <code className="bg-gray-100 px-1 rounded">{"<Image>"}</code> de
+            <p className="">
+              Utiliser le composant <InlineCode>{"<Image>"}</InlineCode> de
               Next.js qui applique automatiquement le lazy loading, le
               redimensionnement, et la compression des images.
             </p>
@@ -208,101 +205,164 @@ export default function Page() {
   className="rounded-lg shadow-md"
 />`}
             </Code>
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 ">
               <strong>Astuce :</strong> Ajouter{" "}
-              <code className="bg-gray-100 px-1 rounded">priority</code> pour
-              les images importantes comme celles du{" "}
-              <strong>hero section</strong>.
+              <InlineCode>priority</InlineCode> pour les images importantes
+              comme celles du <strong>hero section</strong>.
             </p>
-          </section>
+          </Section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
               2. Charger le CSS de manière optimisée
             </h2>
-            <p className="text-gray-700">
-              Utiliser <strong>CSS Modules</strong> ou{" "}
-              <strong>TailwindCSS</strong> au lieu de styles globaux qui peuvent
-              ralentir le rendu.
-            </p>
-            <p className="text-gray-700">
-              Éviter le blocking CSS en limitant l'importation excessive de
-              fichiers CSS externes.
-            </p>
-          </section>
+            <ul className="list-disc pl-6 mb-4">
+              <li className="">
+                Utiliser <strong>CSS Modules</strong> ou{" "}
+                <strong>TailwindCSS</strong> au lieu de styles globaux qui
+                peuvent ralentir le rendu.
+              </li>
+              <li className="">
+                Éviter le blocking CSS en limitant l'importation excessive de
+                fichiers CSS externes.
+              </li>
+            </ul>
+          </Section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
               3. Précharger les polices Web
             </h2>
-            <p className="text-gray-700">
+            <p className="">
               Google Fonts peut impacter le LCP. Utilisez{" "}
-              <code className="bg-gray-100 px-1 rounded">next/font</code> pour
-              optimiser leur chargement :
+              <InlineCode>next/font</InlineCode> pour optimiser leur chargement
+              :
             </p>
-            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
-              <code>
-                {`import { Inter } from "next/font/google";
+            <Code>
+              {`import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
-
 <main className={inter.className}>Mon site</main>`}
-              </code>
-            </pre>
-          </section>
+            </Code>
+          </Section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              4. Optimiser le rendu côté serveur (SSR) ou statique (SSG)
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
+              4. Optimiser le rendu côté serveur{" "}
+              <Link
+                href={
+                  "https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering"
+                }
+              >
+                <u>(SSR)</u>
+              </Link>{" "}
+              ou statique{" "}
+              <Link
+                href={
+                  "https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation"
+                }
+              >
+                <u>(SSG)</u>
+              </Link>
             </h2>
-            <p className="text-gray-700">
-              Privilégier{" "}
-              <code className="bg-gray-100 px-1 rounded">
-                getServerSideProps
-              </code>{" "}
-              ou{" "}
-              <code className="bg-gray-100 px-1 rounded">getStaticProps</code>{" "}
-              pour charger rapidement le contenu principal.
+            <p className="">
+              Privilégier <InlineCode>getServerSideProps</InlineCode> ou{" "}
+              <InlineCode>getStaticProps</InlineCode> pour charger rapidement le
+              contenu principal.
             </p>
-            <p className="text-gray-700">
+            <p className="">
               Utiliser <strong>ISR (Incremental Static Regeneration)</strong>{" "}
               pour améliorer la performance.
             </p>
-          </section>
+            <br />
+            <p className="font-bold">
+              Exemple avec <InlineCode>getServerSideProps</InlineCode> :
+            </p>
+            <Code>{`// pages/index.js
+export async function getServerSideProps() {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              5. Utiliser{" "}
-              <code className="bg-gray-100 px-1 rounded">next/script</code> pour
-              charger les scripts de manière optimale
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+const HomePage = ({ data }) => {
+  return (
+    <div>
+      <h1>Page with Server-Side Rendering</h1>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default HomePage;
+`}</Code>
+          </Section>
+
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
+              5. Utiliser <InlineCode>next/script</InlineCode> pour charger les
+              scripts de manière optimale
             </h2>
-            <p className="text-gray-700">
+            <p className="">
               Charger les scripts en <strong>"lazy"</strong> ou{" "}
               <strong>"beforeInteractive"</strong> selon leur importance :
             </p>
-            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
-              <code>
-                {`import Script from "next/script";
+            <Code>
+              {`import Script from "next/script";
 
 <Script src="https://example.com/script.js" strategy="lazyOnload" />`}
-              </code>
-            </pre>
-          </section>
+            </Code>
+          </Section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <Section>
+            <h2 className="text-1xl font-bold text-gray-800 mb-4">
               6. Optimiser le cache et l'hébergement
             </h2>
-            <p className="text-gray-700">
-              Utiliser un <strong>CDN</strong> (Vercel, Cloudflare) pour charger
-              le contenu plus rapidement.
-            </p>
-            <p className="text-gray-700">
-              Activer la compression <strong>Gzip</strong> ou{" "}
-              <strong>Brotli</strong> sur le serveur.
-            </p>
-          </section>
-        </section>
+            <ul className="list-disc pl-5">
+              <li>
+                Utiliser un <strong>CDN</strong> (Vercel, Cloudflare) pour
+                charger le contenu plus rapidement.
+              </li>
+              <li>
+                Activer la compression <strong>Gzip</strong> ou{" "}
+                <strong>Brotli</strong> sur le serveur.
+              </li>
+            </ul>
+          </Section>
+        </Section>
+        {/* First Input Delay */}
+        <Section>
+          <h2 className="text-2xl font-semibold pb-4">
+            <Link href={"https://web.dev/articles/fid"}>
+              <u> FID (First Input Delay)</u>
+            </Link>{" "}
+          </h2>
+
+          <p>
+            {" "}
+            La métrique <strong>First Input Delay (FID)</strong> représente la
+            perception de l'expérience d'un utilisateur lorsqu'il interagit avec
+            une page web. Imaginez cliquer dans une zone de saisie et que rien
+            ne se passe – cette frustration liée à l'interactivité et à la
+            réactivité d'un site est causée par de longs délais de réponse aux
+            interactions.
+          </p>
+          <Image
+            width={1000}
+            height={300}
+            src={"/lcp-example.png"}
+            alt={"lcp example"}
+          />
+        </Section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
 

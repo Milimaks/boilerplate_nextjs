@@ -29,22 +29,24 @@ export default function Page() {
           Introduction au SEO
         </h1>
         <SeoChecklist />
-        <p className="text-md text-gray-600 leading-relaxed mb-6">
-          Le SEO (Search Engine Optimization) désigne l'ensemble des techniques
-          visant à améliorer la visibilité d'un site web dans les résultats des
-          moteurs de recherche comme Google. <br />
-          <br />
-          Son but est d'augmenter le trafic organique, c'est-à-dire le nombre de
-          visiteurs qui arrivent sur votre site sans avoir payé pour de la
-          publicité. <br />
-          <br />
-          Pour ce faire, il existe plusieurs aspects à prendre en compte : la
-          performance du site, la qualité du contenu, l'expérience utilisateur,
-          et l'autorité du domaine. <br />
-          <br />
-          Voici une liste des principaux outils et pratiques SEO à mettre en
-          place pour optimiser rapidement votre site.
-        </p>
+        <section className="mt-4">
+          <p className="text-md text-gray-600 leading-relaxed mb-6">
+            Le SEO (Search Engine Optimization) désigne l'ensemble des
+            techniques visant à améliorer la visibilité d'un site web dans les
+            résultats des moteurs de recherche comme Google. <br />
+            <br />
+            Son but est d'augmenter le trafic organique, c'est-à-dire le nombre
+            de visiteurs qui arrivent sur votre site sans avoir payé pour de la
+            publicité. <br />
+            <br />
+            Pour ce faire, il existe plusieurs aspects à prendre en compte : la
+            performance du site, la qualité du contenu, l'expérience
+            utilisateur, et l'autorité du domaine. <br />
+            <br />
+            Voici une liste des principaux outils et pratiques SEO à mettre en
+            place pour optimiser rapidement votre site.
+          </p>
+        </section>
         <h2 className="text-3xl font-bold text-gray-800 pb-4">
           Les trois piliers du SEO
         </h2>

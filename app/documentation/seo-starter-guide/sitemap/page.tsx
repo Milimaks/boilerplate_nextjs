@@ -22,14 +22,20 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div className="p-6 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">
-          Les Sitemaps et leur importance
-        </h1>
+        <h1 className="text-2xl font-bold mb-4">Les Sitemaps</h1>
         <p className="mb-4">
-          Les <strong>sitemaps</strong> sont le moyen le plus simple de
-          communiquer avec Google. Ils indiquent les URL appartenant à votre
-          site web et signalent les mises à jour afin que Google puisse détecter
-          plus facilement le nouveau contenu et explorer votre site plus
+          <strong>sitemap.(xml|js|ts)</strong> est un fichier spécial qui suit
+          le{" "}
+          <Link
+            href={"https://www.sitemaps.org/protocol.html"}
+            className={buttonVariants({ variant: "link" })}
+          >
+            format XML des Sitemaps
+          </Link>{" "}
+          afin d’aider les robots des moteurs de recherche à indexer votre site
+          plus efficacement.. Ils indiquent les URL appartenant à votre site web
+          et signalent les mises à jour afin que Google puisse détecter plus
+          facilement le nouveau contenu et explorer votre site plus
           efficacement.
         </p>
         <p className="mb-4">
@@ -109,13 +115,27 @@ export default function Page() {
           manuellement un fichier <code>sitemap.xml</code> dans le dossier{" "}
           <code>public</code> :
         </p>
-        <Code>{`<?xml version="1.0" encoding="UTF-8"?>
-          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            <url>
-              <loc>http://www.example.com/foo</loc>
-              <lastmod>2021-06-01</lastmod>
-            </url>
-          </urlset>`}</Code>
+        <Code>{`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://acme.com</loc>
+    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://acme.com/about</loc>
+    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://acme.com/blog</loc>
+    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
+`}</Code>
 
         <h3 className="text-lg font-semibold mt-6">2. Dynamique</h3>
         <p className="mb-4">
@@ -132,40 +152,60 @@ export default function Page() {
         </p>
 
         <Code>
-          {`const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
+          {`import type { MetadataRoute } from 'next'
  
-          function generateSiteMap(posts) {
-            return \`<?xml version="1.0" encoding="UTF-8"?>
-             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-               <url>
-                 <loc>https://jsonplaceholder.typicode.com</loc>
-               </url>
-               <url>
-                 <loc>https://jsonplaceholder.typicode.com/guide</loc>
-               </url>
-               \${posts.map(({ id }) => \`
-                 <url>
-                     <loc>\${\`\${EXTERNAL_DATA_URL}/\${id}\`}</loc>
-                 </url>
-               \`).join('')}
-             </urlset>
-           \`;
-          }
-           
-          function SiteMap() {}
-           
-          export async function getServerSideProps({ res }) {
-            const request = await fetch(EXTERNAL_DATA_URL);
-            const posts = await request.json();
-            const sitemap = generateSiteMap(posts);
-            res.setHeader('Content-Type', 'text/xml');
-            res.write(sitemap);
-            res.end();
-            return { props: {} };
-          }
-           
-          export default SiteMap;`}
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: 'https://acme.com',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+    {
+      url: 'https://acme.com/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://acme.com/blog',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
+  ]
+}`}
         </Code>
+        <section className="mt-6">
+          <h3 className="text-lg font-semibold">Plus de ressources</h3>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              <Link
+                href="https://www.sitemaps.org/protocol.html"
+                className={buttonVariants({ variant: "link" })}
+              >
+                Sitemap Protocol
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+                className={buttonVariants({ variant: "link" })}
+              >
+                Google Search Central - Sitemaps
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap"
+                className={buttonVariants({ variant: "link" })}
+              >
+                Next.js Doc - Sitemaps
+              </Link>
+            </li>
+          </ul>
+        </section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}

@@ -10,6 +10,7 @@ import {
   SeoTechnique,
   SeoTools,
 } from "@/app/ui/documentation/seoElements";
+import { SeoChecklist } from "@/app/ui/seoCheckList";
 
 export default function Page() {
   const sections = [
@@ -27,6 +28,7 @@ export default function Page() {
         <h1 id="what-is-seo" className="text-3xl font-bold  mb-6">
           Introduction au SEO
         </h1>
+        <SeoChecklist />
         <p className="text-md text-gray-600 leading-relaxed mb-6">
           Le SEO (Search Engine Optimization) désigne l'ensemble des techniques
           visant à améliorer la visibilité d'un site web dans les résultats des

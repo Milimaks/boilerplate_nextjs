@@ -6,6 +6,7 @@ import { Code } from "@/app/ui/code";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
 import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function Page() {
@@ -21,6 +22,7 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4">
+        {/* Robots.txt purpose explanation */}
         <div className="mb-6">
           <h1 id="what-is-seo" className="text-3xl font-bold">
             Quel est l'objectif d'un fichier robots.txt ?
@@ -57,16 +59,19 @@ export default function Page() {
           d’administration, les comptes utilisateurs de votre e-commerce, ou
           certaines routes API, entre autres. Ces fichiers doivent être placés à
           la racine de chaque hôte, ou alternativement, vous pouvez rediriger le
-          chemin <span className="bg-gray-200 p-1 rounded-md">/robots.txt</span>
+          chemin <span className="bg-gray-200 p-1 rounded-md">
+            /robots.txt
+          </span>{" "}
           vers une URL spécifique, et la plupart des robots la suivront.
           <br />
           <br />
         </p>
-
+        {/* How to add Robots.txt file */}
         <h2 className="scroll-m-20 pb-6 text-2xl font-semibold tracking-tight first:mt-0">
           Comment ajouter un fichier robots.txt à un projet Next.js ?
         </h2>
 
+        <h3 className="text-xl font-semibold mb-4">1. Static</h3>
         <p>
           Grâce à la gestion des fichiers statiques dans Next.js, nous pouvons
           facilement ajouter un fichier{" "}
@@ -80,7 +85,7 @@ export default function Page() {
         </p>
 
         <Code>
-          {`// robots.txt
+          {`// public/robots.txt
 
 # Block all bots from accessing sensitive directories
 User-agent: *
@@ -98,6 +103,85 @@ Disallow: /secret-page.html
 # Specify the sitemap location
 Sitemap: https://www.example.com/sitemap.xml`}
         </Code>
+
+        <h3 className="text-xl font-semibold mb-4">2. Dynamic</h3>
+        <p>
+          Next.js permet également de générer un fichier{" "}
+          <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
+          de manière dynamique en utilisant un fichier{" "}
+          <span className="bg-gray-200 p-1 rounded-md">robots.ts</span> dans le
+          dossier <span className="bg-gray-200 p-1 rounded-md">app/</span>. Cela
+          permet de personnaliser les règles en fonction du contexte de
+          l'application.
+        </p>
+
+        <p>Voici comment implémenter un fichier robots.ts :</p>
+
+        <Code>
+          {`// app/robots.ts
+
+export default function robots() {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/admin/", "/private/", "/config/"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+    ],
+    sitemap: "https://www.example.com/sitemap.xml",
+  };
+}`}
+        </Code>
+
+        <p>
+          Avec cette approche, Next.js générera automatiquement un fichier{" "}
+          <span className="bg-gray-200 p-1 rounded-md">robots.txt</span>
+          lorsque l'application sera déployée, sans avoir besoin d’un fichier
+          statique.
+        </p>
+        {/* Pourquoi cette méthode est meilleure ? */}
+        <Card className="p-4 bg-blue-50 border-blue-300 mt-6">
+          <CardContent>
+            <h4 className="text-lg font-semibold mb-2">
+              📌 Pourquoi cette méthode est meilleure ?
+            </h4>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>✅ Pas besoin d’écrire le fichier à la main</li>
+              <li>
+                ✅ Tu peux générer des règles dynamiquement (ex: bloquer
+                certaines pages en fonction des utilisateurs)
+              </li>
+              <li>✅ Il est bien intégré à l’App Router de Next.js</li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        {/* Conclusion */}
+        <Card className="p-4 bg-green-50 border-green-300 mt-6">
+          <CardContent>
+            <h4 className="text-lg font-semibold mb-2">💡 Conclusion :</h4>
+            <p>
+              Si ton site est <strong>statiquement généré</strong>, tu peux
+              juste mettre un
+              <span className="bg-gray-200 p-1 rounded-md ml-1">
+                robots.txt
+              </span>{" "}
+              dans <code>public/robots.txt</code>.
+            </p>
+            <p>
+              Si tu veux un <strong>contrôle plus avancé</strong>, utilise
+              <span className="bg-gray-200 p-1 rounded-md ml-1">
+                app/robots.ts
+              </span>{" "}
+              !
+            </p>
+          </CardContent>
+        </Card>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}

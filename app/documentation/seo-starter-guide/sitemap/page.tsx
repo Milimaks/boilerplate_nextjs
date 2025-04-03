@@ -11,10 +11,9 @@ import Link from "next/link";
 
 export default function Page() {
   const sections = [
-    { id: "what-is-seo", title: "What is SEO?" },
-    { id: "why-seo", title: "Why is SEO Important?" },
-    { id: "getting-started", title: "Getting Started" },
-    { id: "best-practices", title: "Best Practices" },
+    { id: "Introduction", title: "Introduction" },
+    { id: "static-sitemap", title: "Static sitemap" },
+    { id: "dynamic-sitemap", title: "Dynamic sitemap" },
   ];
 
   const activeSection = useArticleProgress(sections);
@@ -22,7 +21,9 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div className="p-6 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Les Sitemaps</h1>
+        <h1 id="introduction" className="text-2xl font-bold mb-4">
+          Les Sitemaps
+        </h1>
         <p className="mb-4">
           <strong>sitemap.(xml|js|ts)</strong> est un fichier spécial qui suit
           le{" "}
@@ -69,7 +70,7 @@ export default function Page() {
           relations entre eux. Les moteurs de recherche comme Google lisent ce
           fichier pour explorer votre site de manière plus intelligente.
         </p>
-
+        {/* Why use a sitemap */}
         <h2 className="text-xl font-bold mt-6">
           Pourquoi utiliser un sitemap ?
         </h2>
@@ -109,52 +110,63 @@ export default function Page() {
         </h2>
         <p className="mb-4">Il existe deux options :</p>
 
-        <h3 className="text-lg font-semibold">1. Manuel</h3>
-        <p className="mb-4">
-          Si votre site est relativement simple et statique, vous pouvez créer
-          manuellement un fichier <code>sitemap.xml</code> dans le dossier{" "}
-          <code>public</code> :
-        </p>
-        <Code>{`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <section id="static-sitemap">
+          <h3 className="text-lg font-semibold">1. Static</h3>
+          <p className="mb-4">
+            Si votre site est relativement simple et statique, vous pouvez créer
+            manuellement un fichier{" "}
+            <code className="bg-gray-200 p-1 rounded-md ml-1">sitemap.xml</code>{" "}
+            dans le dossier{" "}
+            <code className="bg-gray-200 p-1 rounded-md ml-1">public</code> :
+          </p>
+          <Code>{`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://acme.com</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>1</priority>
+  <loc>https://acme.com</loc>
+  <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>1</priority>
   </url>
   <url>
-    <loc>https://acme.com/about</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  <loc>https://acme.com/about</loc>
+  <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://acme.com/blog</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+  <loc>https://acme.com/blog</loc>
+  <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
   </url>
-</urlset>
-`}</Code>
+  </urlset>
+  `}</Code>
+        </section>
+        <section id="dynamic-sitemap">
+          <h3 className="text-lg font-semibold mt-6">2. Dynamique</h3>
+          <p className="mb-4">
+            Si votre site est dynamique, vous pouvez utiliser{" "}
+            <strong>getServerSideProps</strong> pour générer un sitemap XML à la
+            demande.
+          </p>
+          <p className="mb-4">
+            Nous pouvons créer une nouvelle page dans le dossier{" "}
+            <code className="bg-gray-200 p-1 rounded-md ml-1">pages</code>,
+            comme{" "}
+            <code className="bg-gray-200 p-1 rounded-md ml-1">
+              pages/sitemap.xml.js
+            </code>
+            . Cette page interrogera notre API pour récupérer les URL des pages
+            dynamiques et générera un fichier XML en réponse à la requête{" "}
+            <code className="bg-gray-200 p-1 rounded-md ml-1">
+              /sitemap.xml
+            </code>
+            .
+          </p>
 
-        <h3 className="text-lg font-semibold mt-6">2. Dynamique</h3>
-        <p className="mb-4">
-          Si votre site est dynamique, vous pouvez utiliser{" "}
-          <code>getServerSideProps</code> pour générer un sitemap XML à la
-          demande.
-        </p>
-        <p className="mb-4">
-          Nous pouvons créer une nouvelle page dans le dossier{" "}
-          <code>pages</code>, comme <code>pages/sitemap.xml.js</code>. Cette
-          page interrogera notre API pour récupérer les URL des pages dynamiques
-          et générera un fichier XML en réponse à la requête{" "}
-          <code>/sitemap.xml</code>.
-        </p>
-
-        <Code>
-          {`import type { MetadataRoute } from 'next'
+          <Code>
+            {`import type { MetadataRoute } from 'next'
  
-export default function sitemap(): MetadataRoute.Sitemap {
+ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: 'https://acme.com',
@@ -176,7 +188,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 }`}
-        </Code>
+          </Code>
+        </section>
         <section className="mt-6">
           <h3 className="text-lg font-semibold">Plus de ressources</h3>
           <ul className="list-disc pl-6 mb-4">

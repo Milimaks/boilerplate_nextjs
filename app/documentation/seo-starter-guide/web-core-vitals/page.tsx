@@ -359,8 +359,8 @@ export default HomePage;
           <Image
             width={1000}
             height={300}
-            src={"/lcp-example.png"}
-            alt={"lcp example"}
+            src={"/fid-example.png"}
+            alt={"fid example"}
           />
         </Section>
         <NavPagination links={links} className="pt-20 pb-6" />

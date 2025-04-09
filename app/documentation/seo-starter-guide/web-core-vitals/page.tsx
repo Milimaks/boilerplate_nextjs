@@ -362,6 +362,83 @@ export default HomePage;
             src={"/fid-example.png"}
             alt={"fid example"}
           />
+          <h2 className="text-1xl font-bold text-gray-800 mb-4">
+            Comment améliorer le FID ?
+          </h2>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              Réduire le JavaScript bloquant pour améliorer la réactivité
+              (utilisation de Web Workers).
+            </li>
+            <li>Utiliser le lazy loading pour les scripts non essentiels.</li>
+            <li>Chargement asynchrone/différé des ressources.</li>
+            <li>Éviter les tâches longues dans le thread principal.</li>
+          </ul>
+
+          <h4 className="text-xl font-bold text-gray-800 mb-4">
+            Exemple sans dynamic import :
+          </h4>
+          <Code>{`import Fuse from 'fuse.js';
+import _ from 'lodash';
+
+<input
+  type="text"
+  placeholder="Country search..."
+  className={styles.input}
+  onChange={(e) => {
+    const { value } = e.currentTarget;
+
+    const fuse = new Fuse(countries, {
+      keys: ['name'],
+      threshold: 0.3,
+    });
+
+    const searchResult = fuse.search(value).map((result) => result.item);
+
+    const updatedResults = searchResult.length ? searchResult : countries;
+    setResults(updatedResults);
+
+    console.info({
+      searchedAt: _.now(),
+    });
+  }}
+/>
+`}</Code>
+          <h4 className="text-xl font-bold text-gray-800 mb-4">
+            Exemple avec dynamic import :
+          </h4>
+          <Code>{`<input
+  type="text"
+  placeholder="Country search..."
+  className={styles.input}
+  onChange={async (e) => {
+    const { value } = e.currentTarget;
+    // Dynamically load libraries
+    const Fuse = (await import('fuse.js')).default;
+    const _ = (await import('lodash')).default;
+ 
+    const fuse = new Fuse(countries, {
+      keys: ['name'],
+      threshold: 0.3,
+    });
+ 
+    const searchResult = fuse.search(value).map((result) => result.item);
+ 
+    const updatedResults = searchResult.length ? searchResult : countries;
+    setResults(updatedResults);
+ 
+    // Fake analytics hit
+    console.info({
+      searchedAt: _.now(),
+    });
+  }}
+/>`}</Code>
+          <p className="pt-4">
+            En utilisant le dynamic import, vous chargez les bibliothèques
+            uniquement lorsque l'utilisateur interagit avec le champ de saisie,
+            pas au bundle, ce qui réduit le temps de chargement initial et
+            améliore le FID.
+          </p>
         </Section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>

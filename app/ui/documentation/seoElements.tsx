@@ -64,7 +64,14 @@ const seoTechnique: SeoElementProps[] = [
     description:
       "Assurez-vous que votre site est adapté aux mobiles et aux tablettes pour une meilleure expérience utilisateur.",
   },
+  {
+    title: "Balisage Schema.org",
+    description:
+      "Ajoutez un balisage sémantique (JSON-LD ou microdonnées) pour aider les moteurs de recherche à mieux comprendre le contenu de votre site.",
+    href: "/documentation/seo-starter-guide/schema-markup",
+  },
 ];
+
 const seoOnPage: SeoElementProps[] = [
   {
     title: "Contenu de qualité",
@@ -88,34 +95,34 @@ const seoOnPage: SeoElementProps[] = [
 ];
 const seoOffPage: SeoElementProps[] = [
   {
-    title: "Web Core Vitals",
+    title: "Audit de backlinks",
     description:
-      "Mesure la performance du site à travers des indicateurs tels que CLS, INP et LCP qui influencent l'expérience utilisateur.",
-    href: "/documentation/seo-starter-guide/web-core-vitals",
+      "Analyse des liens entrants : qualité, ancrage, diversité. Utilisation d’outils comme Ahrefs ou Majestic.",
+    href: "/documentation/seo-off-page/backlink-audit",
   },
   {
-    title: "Sitemap",
+    title: "Netlinking",
     description:
-      "Un fichier XML qui liste toutes les pages de votre site pour aider les moteurs de recherche à les explorer et indexer.",
-    href: "/documentation/seo-starter-guide/sitemap",
+      "Création de liens via guest blogging, PBN, contenus linkables. Priorité aux liens DoFollow.",
+    href: "/documentation/seo-off-page/netlinking",
   },
   {
-    title: "Robots.txt",
+    title: "Désaveu de liens",
     description:
-      "Un fichier qui indique aux moteurs de recherche quelles pages explorer ou ignorer sur votre site.",
-    href: "/documentation/seo-starter-guide/robots-txt",
+      "Identification des liens toxiques et soumission d’un fichier disavow à Google.",
+    href: "/documentation/seo-off-page/disavow",
   },
   {
-    title: "Métadonnées",
+    title: "Mentions sans lien",
     description:
-      "Utilisez des balises méta pour fournir des informations sur le contenu de votre page, comme le titre, la description et les mots-clés.",
-    href: "/documentation/seo-starter-guide/metadata",
+      "Suivi des mentions de marque non liées et récupération via outreach.",
+    href: "/documentation/seo-off-page/brand-mentions",
   },
   {
-    title: "Contenu de qualité",
+    title: "SEO local",
     description:
-      "Publiez des articles ou pages utiles, bien rédigés et régulièrement mis à jour, répondant aux besoins des utilisateurs.",
-    href: "/documentation/quality-content",
+      "Citations NAP, fiche Google Business, backlinks locaux, balisage JSON-LD.",
+    href: "/documentation/seo-off-page/local-seo",
   },
 ];
 

@@ -51,14 +51,27 @@ export default function Page() {
           Les trois piliers du SEO
         </h2>
         <h3 className="text-2xl font-bold text-gray-800">1. SEO Technique</h3>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Optimisation des aspects techniques du site pour améliorer
+          l’exploration et l’indexation (vitesse, responsive, sitemap, balises,
+          etc.).
+        </p>
         <SeoTechnique />
         <h3 className="text-2xl font-bold text-gray-800 pt-6">
           2. SEO On-Page
         </h3>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Optimisation du contenu visible et du code HTML d’une page (mots-clés,
+          balises title/h1, structure, maillage interne, UX...).
+        </p>
         <SeoOnPage />
         <h3 className="text-2xl font-bold text-gray-800 pt-6">
           3. SEO Off-Page
         </h3>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Optimisation des éléments externes au site (backlinks, réseaux
+          sociaux, e-réputation, etc.).
+        </p>
         <SeoOffPage />
         <h2 className="text-3xl font-bold text-gray-800 pt-6">Les outils</h2>
         <SeoTools />
@@ -121,7 +134,7 @@ export default function Page() {
         <h2 id="getting-started" className="text-2xl font-semibold mt-8">
           Conclusion
         </h2>
-        <p className="text-lg leading-relaxed">
+        <p className="text-md leading-relaxed">
           En appliquant ces méthodes et en utilisant les outils mentionnés
           ci-dessus, vous pouvez significativement améliorer la performance SEO
           de votre site. Que ce soit par l'optimisation de la vitesse de
@@ -130,54 +143,7 @@ export default function Page() {
           meilleur classement dans les moteurs de recherche et attirer davantage
           de visiteurs.
         </p>
-        <p className="text-lg leading-relaxed">
-          En appliquant ces méthodes et en utilisant les outils mentionnés
-          ci-dessus, vous pouvez significativement améliorer la performance SEO
-          de votre site. Que ce soit par l'optimisation de la vitesse de
-          chargement, la création de contenu de qualité, ou la mise en place de
-          bonnes pratiques de backlinks, chaque action compte pour atteindre un
-          meilleur classement dans les moteurs de recherche et attirer davantage
-          de visiteurs.
-        </p>
-        <p className="text-lg leading-relaxed">
-          En appliquant ces méthodes et en utilisant les outils mentionnés
-          ci-dessus, vous pouvez significativement améliorer la performance SEO
-          de votre site. Que ce soit par l'optimisation de la vitesse de
-          chargement, la création de contenu de qualité, ou la mise en place de
-          bonnes pratiques de backlinks, chaque action compte pour atteindre un
-          meilleur classement dans les moteurs de recherche et attirer davantage
-          de visiteurs.
-        </p>
-        <p className="text-lg leading-relaxed">
-          En appliquant ces méthodes et en utilisant les outils mentionnés
-          ci-dessus, vous pouvez significativement améliorer la performance SEO
-          de votre site. Que ce soit par l'optimisation de la vitesse de
-          chargement, la création de contenu de qualité, ou la mise en place de
-          bonnes pratiques de backlinks, chaque action compte pour atteindre un
-          meilleur classement dans les moteurs de recherche et attirer davantage
-          de visiteurs.
-        </p>
-        <p className="text-lg leading-relaxed">
-          En appliquant ces méthodes et en utilisant les outils mentionnés
-          ci-dessus, vous pouvez significativement améliorer la performance SEO
-          de votre site. Que ce soit par l'optimisation de la vitesse de
-          chargement, la création de contenu de qualité, ou la mise en place de
-          bonnes pratiques de backlinks, chaque action compte pour atteindre un
-          meilleur classement dans les moteurs de recherche et attirer davantage
-          de visiteurs.
-        </p>
-        <p className="text-lg leading-relaxed">
-          En appliquant ces méthodes et en utilisant les outils mentionnés
-          ci-dessus, vous pouvez significativement améliorer la performance SEO
-          de votre site. Que ce soit par l'optimisation de la vitesse de
-          chargement, la création de contenu de qualité, ou la mise en place de
-          bonnes pratiques de backlinks, chaque action compte pour atteindre un
-          meilleur classement dans les moteurs de recherche et attirer davantage
-          de visiteurs.
-        </p>
-        <h2 id="best-practices" className="text-2xl font-semibold mt-8">
-          Conclusion
-        </h2>
+
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progression de l'article en sticky */}

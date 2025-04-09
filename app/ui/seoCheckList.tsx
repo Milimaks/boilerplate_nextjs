@@ -12,7 +12,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import { Search, Globe2, Gauge, Plus, Save } from "lucide-react";
+import {
+  Search,
+  Globe2,
+  Gauge,
+  Plus,
+  Save,
+  Wrench,
+  PencilRuler,
+} from "lucide-react";
 
 interface ChecklistItem {
   id: string;
@@ -28,6 +36,26 @@ interface SavedChecklist {
 }
 
 const seoChecklist: ChecklistItem[] = [
+  // Audit & Analyse
+  {
+    id: "site-audit",
+    label:
+      "Réaliser un audit SEO complet du site (PageSpeed Insights, Lighthouse)",
+    category: "audit",
+  },
+  {
+    id: "page-speed",
+    label: "Validation des performances (LCP, FID, CLS)",
+    category: "audit",
+  },
+  {
+    id: "search-console",
+    label:
+      "Vérifier la Search Console pour les erreurs d'indexation, performances, et suggestions d'amélioration",
+    category: "audit",
+  },
+
+  // Optimisation Technique & Contenu
   {
     id: "meta-title",
     label: "Balise title unique et descriptive (50-60 caractères)",
@@ -40,29 +68,25 @@ const seoChecklist: ChecklistItem[] = [
   },
   {
     id: "heading-structure",
-    label: "Structure des titres H1-H6 cohérente",
+    label: "Structure des titres H1-H6 cohérente et logique",
     category: "contenu",
   },
   {
     id: "img-alt",
-    label: "Images avec attributs alt descriptifs",
+    label: "Attributs alt descriptifs pour toutes les images",
     category: "technique",
   },
   {
     id: "url-structure",
-    label: "URLs propres et descriptives",
+    label: "URLs propres, courtes et descriptives",
     category: "technique",
   },
   {
     id: "mobile-friendly",
-    label: "Site responsive et mobile-friendly",
+    label: "Site responsive et optimisé pour mobile",
     category: "technique",
   },
-  {
-    id: "page-speed",
-    label: "Temps de chargement < 3 secondes",
-    category: "performance",
-  },
+
   {
     id: "ssl",
     label: "Certificat SSL actif (HTTPS)",
@@ -70,38 +94,67 @@ const seoChecklist: ChecklistItem[] = [
   },
   {
     id: "sitemap",
-    label: "Sitemap XML à jour",
+    label: "Sitemap XML à jour et soumis à la Search Console",
     category: "technique",
   },
   {
     id: "robots",
-    label: "Fichier robots.txt configuré",
+    label: "Fichier robots.txt bien configuré pour l'exploration",
     category: "technique",
   },
   {
     id: "content-quality",
-    label: "Contenu unique et de qualité (>300 mots)",
+    label: "Contenu unique, utile et bien structuré (>300 mots)",
     category: "contenu",
   },
   {
     id: "internal-links",
-    label: "Liens internes pertinents",
+    label: "Liens internes pertinents et bien hiérarchisés",
     category: "contenu",
   },
   {
     id: "keywords",
-    label: "Mots-clés naturellement intégrés",
+    label: "Mots-clés placés naturellement dans titres, textes et ALT",
     category: "contenu",
   },
   {
     id: "social-meta",
-    label: "Meta tags sociaux (Open Graph, Twitter)",
+    label: "Meta tags pour réseaux sociaux (Open Graph, Twitter)",
     category: "technique",
   },
   {
     id: "schema-markup",
-    label: "Balisage Schema.org approprié",
+    label: "Balisage Schema.org pour améliorer la visibilité",
     category: "technique",
+  },
+
+  // SEO Off-Page
+  {
+    id: "backlinks",
+    label: "Backlinks de qualité provenant de sites autoritaires",
+    category: "off-page",
+  },
+  {
+    id: "brand-mentions",
+    label: "Récupération des mentions de marque sans lien",
+    category: "off-page",
+  },
+  {
+    id: "social-signals",
+    label: "Présence active sur les réseaux sociaux (indirectement bénéfique)",
+    category: "off-page",
+  },
+
+  // Optimisation continue
+  {
+    id: "performance-monitoring",
+    label: "Suivi des performances SEO avec Google Analytics",
+    category: "audit",
+  },
+  {
+    id: "monthly-audit",
+    label: "Réaliser un audit SEO mensuel pour ajuster la stratégie",
+    category: "audit",
   },
 ];
 
@@ -113,6 +166,8 @@ export function SeoChecklist() {
     null
   );
   const [activeTab, setActiveTab] = useState("checklist");
+
+  const tabLength = seoChecklist.length;
 
   const handleCheck = (id: string, checked: boolean) => {
     setCurrentChecklist((prev) =>
@@ -180,7 +235,8 @@ export function SeoChecklist() {
                   Checklist SEO
                 </CardTitle>
                 <CardDescription>
-                  15 points essentiels pour optimiser votre référencement
+                  {tabLength} points essentiels pour optimiser votre
+                  référencement
                 </CardDescription>
                 <div className="flex flex-wrap gap-2 mt-4">
                   <Input
@@ -206,99 +262,124 @@ export function SeoChecklist() {
               <CardContent>
                 <ScrollArea className="h-[400px] pr-4">
                   <div className="space-y-6">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Globe2 className="h-5 w-5 text-blue-500" />
-                        <h3 className="font-semibold">
-                          Optimisation Technique
-                        </h3>
-                      </div>
-                      <div className="space-y-3">
-                        {seoChecklist
-                          .filter((item) => item.category === "technique")
-                          .map((item) => (
-                            <div
-                              key={item.id}
-                              className="flex items-start space-x-3"
+                    {/* Audit et Analyse */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <Gauge className="h-5 w-5 text-red-500" />
+                      <h3 className="font-semibold">Audit et Analyse</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {seoChecklist
+                        .filter((item) => item.category === "audit")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-start space-x-3"
+                          >
+                            <Checkbox
+                              id={item.id}
+                              checked={currentChecklist.includes(item.id)}
+                              onCheckedChange={(checked) =>
+                                handleCheck(item.id, checked as boolean)
+                              }
+                            />
+                            <label
+                              htmlFor={item.id}
+                              className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                              <Checkbox
-                                id={item.id}
-                                checked={currentChecklist.includes(item.id)}
-                                onCheckedChange={(checked) =>
-                                  handleCheck(item.id, checked as boolean)
-                                }
-                              />
-                              <label
-                                htmlFor={item.id}
-                                className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                              >
-                                {item.label}
-                              </label>
-                            </div>
-                          ))}
-                      </div>
+                              {item.label}
+                            </label>
+                          </div>
+                        ))}
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Gauge className="h-5 w-5 text-green-500" />
-                        <h3 className="font-semibold">Performance</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {seoChecklist
-                          .filter((item) => item.category === "performance")
-                          .map((item) => (
-                            <div
-                              key={item.id}
-                              className="flex items-start space-x-3"
+                    {/* Technique */}
+                    <div className="flex items-center gap-2 mb-3 mt-6">
+                      <Wrench className="h-5 w-5 text-grey-500" />
+                      <h3 className="font-semibold">SEO Technique</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {seoChecklist
+                        .filter((item) => item.category === "technique")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-start space-x-3"
+                          >
+                            <Checkbox
+                              id={item.id}
+                              checked={currentChecklist.includes(item.id)}
+                              onCheckedChange={(checked) =>
+                                handleCheck(item.id, checked as boolean)
+                              }
+                            />
+                            <label
+                              htmlFor={item.id}
+                              className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                              <Checkbox
-                                id={item.id}
-                                checked={currentChecklist.includes(item.id)}
-                                onCheckedChange={(checked) =>
-                                  handleCheck(item.id, checked as boolean)
-                                }
-                              />
-                              <label
-                                htmlFor={item.id}
-                                className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                              >
-                                {item.label}
-                              </label>
-                            </div>
-                          ))}
-                      </div>
+                              {item.label}
+                            </label>
+                          </div>
+                        ))}
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Search className="h-5 w-5 text-purple-500" />
-                        <h3 className="font-semibold">Contenu & Mots-clés</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {seoChecklist
-                          .filter((item) => item.category === "contenu")
-                          .map((item) => (
-                            <div
-                              key={item.id}
-                              className="flex items-start space-x-3"
+                    {/* Contenu */}
+                    <div className="flex items-center gap-2 mb-3 mt-6">
+                      <PencilRuler className="h-5 w-5 text-green-500" />
+                      <h3 className="font-semibold">Optimisation du Contenu</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {seoChecklist
+                        .filter((item) => item.category === "contenu")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-start space-x-3"
+                          >
+                            <Checkbox
+                              id={item.id}
+                              checked={currentChecklist.includes(item.id)}
+                              onCheckedChange={(checked) =>
+                                handleCheck(item.id, checked as boolean)
+                              }
+                            />
+                            <label
+                              htmlFor={item.id}
+                              className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                              <Checkbox
-                                id={item.id}
-                                checked={currentChecklist.includes(item.id)}
-                                onCheckedChange={(checked) =>
-                                  handleCheck(item.id, checked as boolean)
-                                }
-                              />
-                              <label
-                                htmlFor={item.id}
-                                className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                              >
-                                {item.label}
-                              </label>
-                            </div>
-                          ))}
-                      </div>
+                              {item.label}
+                            </label>
+                          </div>
+                        ))}
+                    </div>
+
+                    {/* Off-page */}
+                    <div className="flex items-center gap-2 mb-3 mt-6">
+                      <Globe2 className="h-5 w-5 text-blue-500" />
+                      <h3 className="font-semibold">SEO Off-page</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {seoChecklist
+                        .filter((item) => item.category === "off-page")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-start space-x-3"
+                          >
+                            <Checkbox
+                              id={item.id}
+                              checked={currentChecklist.includes(item.id)}
+                              onCheckedChange={(checked) =>
+                                handleCheck(item.id, checked as boolean)
+                              }
+                            />
+                            <label
+                              htmlFor={item.id}
+                              className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              {item.label}
+                            </label>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 </ScrollArea>

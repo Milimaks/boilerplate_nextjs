@@ -36,6 +36,7 @@ export default function Page() {
             <Link
               className={buttonVariants({ variant: "link" })}
               href="https://web.dev/articles/vitals"
+              target="_blank"
             >
               Web Vitals
             </Link>{" "}
@@ -48,6 +49,7 @@ export default function Page() {
             <Link
               className={buttonVariants({ variant: "link" })}
               href="https://developers.google.com/search/blog/2020/11/timing-for-page-experience"
+              target="_blank"
             >
               Core Web Vitals
             </Link>{" "}
@@ -155,7 +157,7 @@ export default function Page() {
 
         <Section id="Largest-contentful-paint" className="mb-6">
           <h2 className="text-2xl font-semibold pb-4">
-            <Link href={"https://web.dev/articles/lcp"}>
+            <Link href={"https://web.dev/articles/lcp"} target="_blank">
               <u> LCP (Largest Contentful Paint)</u>
             </Link>{" "}
           </h2>
@@ -253,6 +255,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
                 href={
                   "https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering"
                 }
+                target="_blank"
               >
                 <u>(SSR)</u>
               </Link>{" "}
@@ -261,6 +264,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
                 href={
                   "https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation"
                 }
+                target="_blank"
               >
                 <u>(SSG)</u>
               </Link>
@@ -342,7 +346,7 @@ export default HomePage;
         {/* First Input Delay */}
         <Section>
           <h2 className="text-2xl font-semibold pb-4">
-            <Link href={"https://web.dev/articles/fid"}>
+            <Link href={"https://web.dev/articles/fid"} target="_blank">
               <u> FID (First Input Delay)</u>
             </Link>{" "}
           </h2>
@@ -439,6 +443,59 @@ import _ from 'lodash';
             pas au bundle, ce qui réduit le temps de chargement initial et
             améliore le FID.
           </p>
+        </Section>
+        <Section>
+          {" "}
+          <h2 className="text-2xl font-semibold pb-4">
+            <Link href={"https://web.dev/articles/cls"} target="_blank">
+              <u> CLS (Cumulative Layout Shift)</u>
+            </Link>{" "}
+          </h2>
+          <p>
+            Le <strong>Cumulative Layout Shift (CLS)</strong> est une métrique
+            qui mesure la stabilité visuelle globale de ton site. Un site dont
+            la mise en page change de manière inattendue pendant le chargement
+            peut provoquer des erreurs de clic et distraire l’utilisateur.
+          </p>
+          <br />
+          <p>
+            Le CLS se produit lorsque des éléments sont déplacés après avoir été
+            initialement rendus par le DOM. Par exemple, si un bouton apparaît
+            après un bloc de texte déjà affiché, cela peut faire descendre le
+            bloc et créer un décalage.
+          </p>
+          <br />
+          <p>
+            Chaque décalage individuel d’un élément n’est pris en compte dans le
+            CLS que <strong>s’il est inattendu</strong>. Si un nouvel élément
+            est ajouté ou si un élément change de taille{" "}
+            <strong>sans déplacer les autres</strong>, cela{" "}
+            <strong>n’est pas compté</strong> comme un décalage.
+          </p>
+          <Image
+            width={1000}
+            height={300}
+            src={"/cls-example.png"}
+            alt={"cls example"}
+          />
+          <h2 className="text-1xl font-bold text-gray-800 mb-4">
+            Comment améliorer le FID ?
+          </h2>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              Toujours définir les dimensions des images et vidéos{" "}
+              <strong>(définir width et height)</strong>
+            </li>
+            <li>
+              Réserver l’espace pour les contenus dynamiques{" "}
+              <strong>(hauteur fixe bannière, pubs, iframes etc)</strong>
+            </li>
+            <li>
+              Évite d'injecter du contenu tardivement{" "}
+              <strong>(pré-charger police)</strong>
+            </li>
+            <li>Utilise des transitions CSS</li>
+          </ul>
         </Section>
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>

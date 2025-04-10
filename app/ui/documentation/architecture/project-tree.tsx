@@ -13,6 +13,7 @@ import React, { useState } from "react";
 
 type TreeNode = {
   name: string;
+  description?: string;
   type: "folder" | "file";
   children?: TreeNode[];
   content?: string;
@@ -23,311 +24,104 @@ const sampleProject: TreeNode = {
   type: "folder",
   children: [
     {
+      name: "app",
+      description: "Next.js app directory ",
+      type: "folder",
+      children: [
+        {
+          name: "auth",
+          type: "folder",
+          children: [
+            {
+              name: "sign-in",
+              type: "folder",
+              children: [{ name: "page.tsx", type: "file" }],
+            },
+            {
+              name: "sign-up",
+              type: "folder",
+              children: [{ name: "page.tsx", type: "file" }],
+            },
+            { name: "action.ts", type: "file" },
+          ],
+        },
+        { name: "_components", type: "folder", children: [] },
+      ],
+    },
+    { name: "assets", type: "folder", children: [] },
+    {
+      name: "di",
+      type: "folder",
+      children: [{ name: "modules", type: "folder", children: [] }],
+    },
+    {
+      name: "drizzle",
+      type: "folder",
+      children: [{ name: "migrations", type: "folder", children: [] }],
+    },
+    { name: "public", type: "folder", children: [] },
+    {
       name: "src",
       type: "folder",
       children: [
         {
-          name: "domain",
+          name: "application",
           type: "folder",
           children: [
-            {
-              name: "entities",
-              type: "folder",
-              children: [
-                {
-                  name: "User.ts",
-                  type: "file",
-                  content: `User.ts`,
-                },
-                {
-                  name: "Product.ts",
-                  type: "file",
-                  content: `Product.ts`,
-                },
-              ],
-            },
-            {
-              name: "repositories",
-              type: "folder",
-              children: [
-                {
-                  name: "IUserRepository.ts",
-                  type: "file",
-                  content: `import { User } from '../entities/User';
-
-export interface IUserRepository {
-  findById(id: string): Promise<User | null>;
-  findAll(): Promise<User[]>;
-  save(user: User): Promise<void>;
-  delete(id: string): Promise<void>;
-}`,
-                },
-                {
-                  name: "IProductRepository.ts",
-                  type: "file",
-                  content: `import { Product } from '../entities/Product';
-
-export interface IProductRepository {
-  findById(id: string): Promise<Product | null>;
-  findAll(): Promise<Product[]>;
-  save(product: Product): Promise<void>;
-  delete(id: string): Promise<void>;
-}`,
-                },
-              ],
-            },
-            {
-              name: "usecases",
-              type: "folder",
-              children: [
-                {
-                  name: "CreateUser.ts",
-                  type: "file",
-                  content: `import { User, UserImpl } from '../entities/User';
-import { IUserRepository } from '../repositories/IUserRepository';
-
-export class CreateUserUseCase {
-  constructor(private userRepository: IUserRepository) {}
-
-  async execute(email: string, name: string): Promise<User> {
-    const user = new UserImpl(
-      crypto.randomUUID(),
-      email,
-      name,
-      new Date()
-    );
-    
-    await this.userRepository.save(user);
-    return user;
-  }
-}`,
-                },
-                {
-                  name: "GetProducts.ts",
-                  type: "file",
-                  content: `import { Product } from '../entities/Product';
-import { IProductRepository } from '../repositories/IProductRepository';
-
-export class GetProductsUseCase {
-  constructor(private productRepository: IProductRepository) {}
-
-  async execute(): Promise<Product[]> {
-    return this.productRepository.findAll();
-  }
-}`,
-                },
-              ],
-            },
+            { name: "repositories", type: "folder", children: [] },
+            { name: "services", type: "folder", children: [] },
+            { name: "use-cases", type: "folder", children: [] },
+          ],
+        },
+        {
+          name: "entities",
+          type: "folder",
+          children: [
+            { name: "errors", type: "folder", children: [] },
+            { name: "models", type: "folder", children: [] },
           ],
         },
         {
           name: "infrastructure",
           type: "folder",
           children: [
+            { name: "repositories", type: "folder", children: [] },
+            { name: "services", type: "folder", children: [] },
+          ],
+        },
+        {
+          name: "interface-adapters",
+          type: "folder",
+          children: [
             {
-              name: "database",
+              name: "controllers",
               type: "folder",
               children: [
-                {
-                  name: "UserRepository.ts",
-                  type: "file",
-                  content: `import { User } from '../../domain/entities/User';
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-
-export class UserRepository implements IUserRepository {
-  private users: User[] = [];
-
-  async findById(id: string): Promise<User | null> {
-    return this.users.find(user => user.id === id) || null;
-  }
-
-  async findAll(): Promise<User[]> {
-    return [...this.users];
-  }
-
-  async save(user: User): Promise<void> {
-    const index = this.users.findIndex(u => u.id === user.id);
-    if (index >= 0) {
-      this.users[index] = user;
-    } else {
-      this.users.push(user);
-    }
-  }
-
-  async delete(id: string): Promise<void> {
-    this.users = this.users.filter(user => user.id !== id);
-  }
-}`,
-                },
-                {
-                  name: "ProductRepository.ts",
-                  type: "file",
-                  content: `import { Product } from '../../domain/entities/Product';
-import { IProductRepository } from '../../domain/repositories/IProductRepository';
-
-export class ProductRepository implements IProductRepository {
-  private products: Product[] = [];
-
-  async findById(id: string): Promise<Product | null> {
-    return this.products.find(product => product.id === id) || null;
-  }
-
-  async findAll(): Promise<Product[]> {
-    return [...this.products];
-  }
-
-  async save(product: Product): Promise<void> {
-    const index = this.products.findIndex(p => p.id === product.id);
-    if (index >= 0) {
-      this.products[index] = product;
-    } else {
-      this.products.push(product);
-    }
-  }
-
-  async delete(id: string): Promise<void> {
-    this.products = this.products.filter(product => product.id !== id);
-  }
-}`,
-                },
-              ],
-            },
-            {
-              name: "config",
-              type: "folder",
-              children: [
-                {
-                  name: "database.ts",
-                  type: "file",
-                  content: `export const databaseConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432', 10),
-  username: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || 'clean_architecture_db'
-};`,
-                },
+                { name: "auth", type: "folder", children: [] },
+                { name: "todos", type: "folder", children: [] },
               ],
             },
           ],
         },
+      ],
+    },
+    {
+      name: "tests",
+      type: "folder",
+      children: [
         {
-          name: "presentation",
+          name: "unit",
           type: "folder",
           children: [
             {
-              name: "components",
+              name: "application",
               type: "folder",
-              children: [
-                {
-                  name: "UserList.tsx",
-                  type: "file",
-                  content: `import React, { useEffect, useState } from 'react';
-import { User } from '../../domain/entities/User';
-
-interface Props {
-  users: User[];
-  onDelete: (id: string) => void;
-}
-
-export const UserList: React.FC<Props> = ({ users, onDelete }) => {
-  return (
-    <div className="space-y-4">
-      {users.map(user => (
-        <div key={user.id} className="flex justify-between items-center p-4 bg-white shadow rounded">
-          <div>
-            <h3 className="font-medium">{user.name}</h3>
-            <p className="text-gray-500">{user.email}</p>
-          </div>
-          <button
-            onClick={() => onDelete(user.id)}
-            className="text-red-500 hover:text-red-700"
-          >
-            Delete
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-};`,
-                },
-                {
-                  name: "ProductCard.tsx",
-                  type: "file",
-                  content: `import React from 'react';
-import { Product } from '../../domain/entities/Product';
-
-interface Props {
-  product: Product;
-}
-
-export const ProductCard: React.FC<Props> = ({ product }) => {
-  return (
-    <div className="border rounded-lg p-4 shadow-sm">
-      <h3 className="text-lg font-medium">{product.name}</h3>
-      <p className="text-gray-600 mt-2">{product.description}</p>
-      <div className="mt-4">
-        <span className="text-2xl font-bold">
-          
-        </span>
-      </div>
-    </div>
-  );
-};`,
-                },
-              ],
+              children: [{ name: "use-cases", type: "folder", children: [] }],
             },
             {
-              name: "pages",
+              name: "interface-adapters",
               type: "folder",
-              children: [
-                {
-                  name: "Home.tsx",
-                  type: "file",
-                  content: `import React from 'react';
-import { ProductCard } from '../components/ProductCard';
-import { useProducts } from '../hooks/useProducts';
-
-export const Home: React.FC = () => {
-  const { products, loading, error } = useProducts();
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    </div>
-  );
-};`,
-                },
-                {
-                  name: "Dashboard.tsx",
-                  type: "file",
-                  content: `import React from 'react';
-import { UserList } from '../components/UserList';
-import { useUsers } from '../hooks/useUsers';
-
-export const Dashboard: React.FC = () => {
-  const { users, deleteUser, loading, error } = useUsers();
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">User Dashboard</h1>
-      <UserList users={users} onDelete={deleteUser} />
-    </div>
-  );
-};`,
-                },
-              ],
+              children: [{ name: "controllers", type: "folder", children: [] }],
             },
           ],
         },

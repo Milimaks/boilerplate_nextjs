@@ -34,7 +34,8 @@ export default function Page() {
         <ProjectTree fileContents={fileContents} />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
-      {/* Progression de l'article en sticky */}
+      {/* Progress of the article */}
+
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
         <ArticleProgress
           sections={sections.map((section) => ({

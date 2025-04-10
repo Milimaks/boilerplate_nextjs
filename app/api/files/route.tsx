@@ -8,13 +8,13 @@ export async function GET() {
   const files = fs.readdirSync(dirPath);
   const result: Record<string, string> = {};
 
-  // Lecture de chaque fichier et ajout dans le résultat
+  // Read each file and add it to the result
   files.forEach((file) => {
     const filePath = path.join(dirPath, file);
     result[file] = fs.readFileSync(filePath, "utf-8");
   });
 
-  // Retourne le résultat sous forme JSON
+  // Return the result as JSON
   return new Response(JSON.stringify(result), {
     headers: { "Content-Type": "application/json" },
   });

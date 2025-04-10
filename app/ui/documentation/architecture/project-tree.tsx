@@ -25,7 +25,7 @@ const sampleProject: TreeNode = {
   children: [
     {
       name: "app",
-      description: "Next.js app directory ",
+      description: "Next.js app directory - Frameworks & Drivers ",
       type: "folder",
       children: [
         {
@@ -51,6 +51,7 @@ const sampleProject: TreeNode = {
     { name: "assets", type: "folder", children: [] },
     {
       name: "di",
+      description: "Dependency Injection",
       type: "folder",
       children: [{ name: "modules", type: "folder", children: [] }],
     },
@@ -68,7 +69,22 @@ const sampleProject: TreeNode = {
           name: "application",
           type: "folder",
           children: [
-            { name: "repositories", type: "folder", children: [] },
+            {
+              name: "repositories",
+              type: "folder",
+              children: [
+                {
+                  name: "todos.repository.interface.ts",
+                  type: "file",
+                  content: "todos.repository.interface.ts",
+                },
+                {
+                  name: "users.repository.interface.ts",
+                  type: "file",
+                  content: "users.repository.interface.ts",
+                },
+              ],
+            },
             { name: "services", type: "folder", children: [] },
             { name: "use-cases", type: "folder", children: [] },
           ],

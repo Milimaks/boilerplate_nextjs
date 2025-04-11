@@ -6,7 +6,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname } from "next/navigation";
-import { NavigationMenuItem } from "./data";
+import { NavigationMenuItem } from "./documentation/seo-starter-guide/data";
 
 interface NavPaginationProps {
   links: NavigationMenuItem[];

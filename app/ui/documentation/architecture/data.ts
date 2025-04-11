@@ -6,6 +6,10 @@ export interface NavigationMenuItem {
 
 export const links: NavigationMenuItem[] = [
   {
+    name: "Introduction to Clean Architecture",
+    href: "/documentation/architecture",
+  },
+  {
     name: "Clean Project Structure",
     href: "/documentation/architecture/clean-project-structure",
   },

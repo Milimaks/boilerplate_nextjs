@@ -2,8 +2,10 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import CleanArchitectureOverview from "@/app/ui/documentation/architecture/clean-architecture-overview";
-import { links } from "@/app/ui/documentation/seo-starter-guide/data";
+import { links } from "@/app/ui/documentation/architecture/data";
+import { MoreRessources } from "@/app/ui/more-ressources";
 import { NavPagination } from "@/app/ui/nav-pagination";
+import { externalLinks } from "./interfaces-adapters/external-ressources";
 
 export default function Page() {
   const sections = [
@@ -19,6 +21,7 @@ export default function Page() {
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4">
         <CleanArchitectureOverview />
+        <MoreRessources externalLinks={externalLinks} />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}

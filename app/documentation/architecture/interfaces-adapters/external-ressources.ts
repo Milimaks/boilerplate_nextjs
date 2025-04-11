@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 export const externalLinks = [
   {
     name: "Blog cleancoder",
@@ -10,5 +12,9 @@ export const externalLinks = [
   {
     name: "Clean Architecture in Next.js",
     link: "https://www.youtube.com/watch?v=jJVAla0dWJo&t=1s",
+  },
+  {
+    name: "Clean Architecture Repository",
+    link: "https://github.com/nikolovlazar/nextjs-clean-architecture",
   },
 ];

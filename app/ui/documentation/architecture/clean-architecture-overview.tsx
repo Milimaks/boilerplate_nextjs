@@ -13,6 +13,7 @@ export default function CleanArchitectureOverview() {
           height={340}
           src="/clean-architecture-diagram.png"
           alt="Clean Architecture Diagram"
+          priority
         />
         <h2 className="text-2xl font-semibold">
           Qu'est-ce que la Clean Architecture et quels sont ses avantages ?
@@ -74,6 +75,7 @@ export default function CleanArchitectureOverview() {
               <Link
                 href="architecture/frameworks-drivers"
                 className={cn(buttonVariants({ variant: "link" }), "text-md")}
+                target="_blank"
               >
                 Frameworks & Drivers
               </Link>

@@ -1,10 +1,7 @@
 "use client";
-import { useArticleProgress } from "@/app/lib/custom-hooks";
-import { ArticleProgress } from "@/app/ui/articleProgess";
-import CleanArchitectureOverview from "@/app/ui/documentation/architecture/clean-architecture-overview";
 import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
+import { NavPagination } from "@/app/ui/nav-pagination";
 import { useEffect, useState } from "react";
 
 export default function Page() {

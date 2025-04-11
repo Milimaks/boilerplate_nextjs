@@ -3,7 +3,7 @@
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
+import { NavPagination } from "@/app/ui/nav-pagination";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";

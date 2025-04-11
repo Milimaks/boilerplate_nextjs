@@ -1,12 +1,14 @@
 "use client";
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
+import CleanArchitectureOverview from "@/app/ui/documentation/architecture/clean-architecture-overview";
 import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
 import { links } from "@/app/ui/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/app/ui/documentation/seo-starter-guide/navPagination";
 import { useEffect, useState } from "react";
 
 export default function Page() {
+  // Fetch all files from the server for the project tree
   const [fileContents, setFileContents] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function Page() {
 
     fetchFileContents();
   }, []);
-  console.log(fileContents);
+
   const sections = [
     { id: "what-is-seo", title: "Présentation" },
     { id: "research-system", title: "Systèmes de recherche " },
@@ -32,6 +34,7 @@ export default function Page() {
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
         <ProjectTree fileContents={fileContents} />
+        <CleanArchitectureOverview />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
       {/* Progress of the article */}

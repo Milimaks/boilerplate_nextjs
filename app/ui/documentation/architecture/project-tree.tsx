@@ -5,11 +5,12 @@ import {
   Database,
   FileText,
   Folder,
+  Layers,
   Layout,
   Settings,
   Terminal,
 } from "lucide-react";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TreeNode = {
   name: string;
@@ -165,9 +166,14 @@ const TreeNode: React.FC<{
   node: TreeNode;
   level: number;
   onFileSelect: (content: string, fileName: string) => void;
-}> = ({ node, level, onFileSelect, fileContents }) => {
+  expandedLevel: number;
+}> = ({ node, level, onFileSelect, fileContents, expandedLevel }) => {
   const [isOpen, setIsOpen] = useState(true);
   const paddingLeft = `${level * 1.5}rem`;
+
+  useEffect(() => {
+    setIsOpen(expandedLevel === Infinity || level <= expandedLevel);
+  }, [expandedLevel, level]);
 
   if (node.type === "file") {
     const isViewable = node.name.endsWith(".ts") || node.name.endsWith(".tsx");
@@ -230,6 +236,7 @@ const TreeNode: React.FC<{
                 level={level + 1}
                 onFileSelect={onFileSelect}
                 fileContents={fileContents}
+                expandedLevel={expandedLevel}
               />
             ))}
           </div>
@@ -244,10 +251,15 @@ const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
 }) => {
   const [selectedFileContent, setSelectedFileContent] = useState<string>("");
   const [selectedFileName, setSelectedFileName] = useState<string>("");
+  const [expandedLevel, setExpandedLevel] = useState<number>(1);
 
   const handleFileSelect = (content: string, fileName: string) => {
     setSelectedFileContent(content);
     setSelectedFileName(fileName);
+  };
+
+  const handleExpandLevel = (level: number | "all") => {
+    setExpandedLevel(level === "all" ? Infinity : level);
   };
 
   return (
@@ -259,12 +271,40 @@ const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
             Project Structure - Clean Architecture
           </span>
         </h2>
+        <div className="flex gap-2 mb-4">
+          {[1, 2, 3].map((level) => (
+            <button
+              key={level}
+              onClick={() => handleExpandLevel(level)}
+              className={`px-3 py-1.5 rounded-md transition-all duration-200 ease-in-out flex items-center gap-2 ${
+                expandedLevel === level
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              <Layers className="w-4 h-4" />
+              <span className="text-xs">Level {level}</span>
+            </button>
+          ))}
+          <button
+            onClick={() => handleExpandLevel("all")}
+            className={`px-3 py-1.5 rounded-md transition-all duration-200 ease-in-out flex items-center gap-2 ${
+              expandedLevel === Infinity
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span className="text-xs">All</span>
+          </button>
+        </div>
         <div className="border rounded-lg overflow-hidden transition-all duration-200 ease-in-out hover:border-gray-300">
           <TreeNode
             node={sampleProject}
             level={1}
             onFileSelect={handleFileSelect}
             fileContents={fileContents}
+            expandedLevel={expandedLevel}
           />
         </div>
       </div>

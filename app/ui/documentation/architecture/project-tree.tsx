@@ -271,7 +271,7 @@ const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
             Project Structure - Clean Architecture
           </span>
         </h2>
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4 overflow-x-auto">
           {[1, 2, 3].map((level) => (
             <button
               key={level}

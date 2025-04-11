@@ -62,20 +62,28 @@ export const links: NavSection[] = [
         href: "/documentation/architecture",
         submenu: [
           {
-            name: "Test",
-            href: "/documentation/architecture/test",
+            name: "Clean Project Structure",
+            href: "/documentation/architecture/clean-project-structure",
           },
           {
-            name: "sa",
-            href: "/documentation/architecture/test",
+            name: "Frameworks & Drivers",
+            href: "/documentation/architecture/frameworks-drivers",
           },
           {
-            name: "de",
-            href: "/documentation/architecture/test",
+            name: "Interfaces Adapters",
+            href: "/documentation/architecture/interfaces-adapters",
           },
           {
-            name: "tre",
-            href: "/documentation/architecture/test",
+            name: "Application",
+            href: "/documentation/architecture/application",
+          },
+          {
+            name: "Entities",
+            href: "/documentation/architecture/entities",
+          },
+          {
+            name: "Infrastructure",
+            href: "/documentation/architecture/infrastructure",
           },
         ],
         icon: UserGroupIcon,

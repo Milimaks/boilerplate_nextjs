@@ -1,10 +1,10 @@
 export default function CleanArchitectureOverview() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-10 space-y-12 text-gray-800 dark:text-gray-100">
+    <section className="max-w-4xl mx-auto  space-y-12 text-gray-800 dark:text-gray-100">
       <header className="space-y-4">
         <h1 className="text-4xl font-bold">Présentation</h1>
         <h2 className="text-2xl font-semibold">
-          Qu'est-ce que la Clean Architecture et quels sont ses bénéfices&nbsp;?
+          Qu'est-ce que la Clean Architecture et quels sont ses avantages ?
         </h2>
         <p className="text-lg leading-relaxed">
           Un ensemble de règles qui vous aident à structurer votre application
@@ -14,7 +14,7 @@ export default function CleanArchitectureOverview() {
           langage de programmation.
         </p>
         <p className="text-lg leading-relaxed">
-          «&nbsp;Clean Architecture et ses amis&nbsp;» ont tous le même
+          «&nbsp;Clean Architecture et ses dérivés&nbsp;» ont tous le même
           objectif&nbsp;: la séparation des responsabilités. Ils introduisent
           des «&nbsp;couches&nbsp;» qui regroupent le code similaire.
         </p>
@@ -27,11 +27,12 @@ export default function CleanArchitectureOverview() {
         <ul className="list-disc list-inside space-y-2 text-lg">
           <li>
             <strong>Indépendant de l'UI</strong> — la logique métier n'est pas
-            couplée au framework UI utilisé.
+            lié au framework UI utilisé.
           </li>
           <li>
             <strong>Indépendant de la base de données</strong> — les opérations
-            sur la base sont isolées dans leur propre couche.
+            liées à la base sont isolées, donc le reste de l’app ne se préoccupe
+            pas de laquelle est utilisée.
           </li>
           <li>
             <strong>Indépendant des services externes</strong> — les règles

@@ -1,6 +1,6 @@
 "use client";
 import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
-import { links } from "@/app/ui/documentation/architecture/data";
+import { links } from "@/app/ui/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/app/ui/nav-pagination";
 import { useEffect, useState } from "react";
 

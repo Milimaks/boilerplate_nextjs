@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
-        <ProjectTree fileContents={fileContents} />
+        <ProjectTree fileContents={fileContents} section="entities" />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
     </main>

@@ -1,4 +1,5 @@
 "use client";
+import { sampleProject } from "@/app/documentation/architecture/data/architecture-tree";
 import {
   ChevronRight,
   Code,
@@ -18,135 +19,7 @@ type TreeNode = {
   type: "folder" | "file";
   children?: TreeNode[];
   content?: string;
-};
-
-const sampleProject: TreeNode = {
-  name: "clean-architecture-project",
-  type: "folder",
-  children: [
-    {
-      name: "app",
-      description: "Next.js app directory - Frameworks & Drivers ",
-      type: "folder",
-      children: [
-        {
-          name: "auth",
-          type: "folder",
-          children: [
-            {
-              name: "sign-in",
-              type: "folder",
-              children: [{ name: "page.tsx", type: "file" }],
-            },
-            {
-              name: "sign-up",
-              type: "folder",
-              children: [{ name: "page.tsx", type: "file" }],
-            },
-            { name: "action.ts", type: "file" },
-          ],
-        },
-        { name: "_components", type: "folder", children: [] },
-      ],
-    },
-    { name: "assets", type: "folder", children: [] },
-    {
-      name: "di",
-      description: "Dependency Injection",
-      type: "folder",
-      children: [{ name: "modules", type: "folder", children: [] }],
-    },
-    {
-      name: "drizzle",
-      type: "folder",
-      children: [{ name: "migrations", type: "folder", children: [] }],
-    },
-    { name: "public", type: "folder", children: [] },
-    {
-      name: "src",
-      type: "folder",
-      children: [
-        {
-          name: "application",
-          type: "folder",
-          children: [
-            {
-              name: "repositories",
-              type: "folder",
-              children: [
-                {
-                  name: "todos.repository.interface.ts",
-                  type: "file",
-                  content: "todos.repository.interface.ts",
-                },
-                {
-                  name: "users.repository.interface.ts",
-                  type: "file",
-                  content: "users.repository.interface.ts",
-                },
-              ],
-            },
-            { name: "services", type: "folder", children: [] },
-            { name: "use-cases", type: "folder", children: [] },
-          ],
-        },
-        {
-          name: "entities",
-          type: "folder",
-          children: [
-            { name: "errors", type: "folder", children: [] },
-            { name: "models", type: "folder", children: [] },
-          ],
-        },
-        {
-          name: "infrastructure",
-          type: "folder",
-          children: [
-            { name: "repositories", type: "folder", children: [] },
-            { name: "services", type: "folder", children: [] },
-          ],
-        },
-        {
-          name: "interface-adapters",
-          type: "folder",
-          children: [
-            {
-              name: "controllers",
-              type: "folder",
-              children: [
-                { name: "auth", type: "folder", children: [] },
-                { name: "todos", type: "folder", children: [] },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "tests",
-      type: "folder",
-      children: [
-        {
-          name: "unit",
-          type: "folder",
-          children: [
-            {
-              name: "application",
-              type: "folder",
-              children: [{ name: "use-cases", type: "folder", children: [] }],
-            },
-            {
-              name: "interface-adapters",
-              type: "folder",
-              children: [{ name: "controllers", type: "folder", children: [] }],
-            },
-          ],
-        },
-      ],
-    },
-    { name: "package.json", type: "file" },
-    { name: "tsconfig.json", type: "file" },
-  ],
+  section?: string;
 };
 
 const getFileIcon = (fileName: string) => {
@@ -246,12 +119,53 @@ const TreeNode: React.FC<{
   );
 };
 
-const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
-  fileContents,
-}) => {
+const filterProjectBySection = (
+  project: TreeNode,
+  section?: string
+): TreeNode => {
+  if (!section) return project;
+
+  // Recursive function to find all nodes matching the section
+  const findSections = (node: TreeNode): TreeNode[] => {
+    let matchingNodes: TreeNode[] = [];
+
+    // If the current node matches the section, add it to the result
+    if (node.section === section) {
+      matchingNodes.push(node);
+    }
+
+    // If the node has children, recursively search them
+    if (node.children) {
+      for (const child of node.children) {
+        matchingNodes = matchingNodes.concat(findSections(child));
+      }
+    }
+
+    return matchingNodes;
+  };
+
+  // Collect all matching nodes
+  const matchingNodes = findSections(project);
+
+  // If no matching nodes are found, return the original project
+  if (matchingNodes.length === 0) return project;
+
+  // Return a new tree structure containing only the matching nodes
+  return {
+    name: project.name,
+    type: "folder",
+    children: matchingNodes,
+  };
+};
+const ProjectTree: React.FC<{
+  fileContents: Record<string, string>;
+  section?: string;
+}> = ({ fileContents, section }) => {
   const [selectedFileContent, setSelectedFileContent] = useState<string>("");
   const [selectedFileName, setSelectedFileName] = useState<string>("");
   const [expandedLevel, setExpandedLevel] = useState<number>(1);
+
+  const filteredProject = filterProjectBySection(sampleProject, section);
 
   const handleFileSelect = (content: string, fileName: string) => {
     setSelectedFileContent(content);
@@ -268,7 +182,11 @@ const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
         <h2 className="text-xl font-bold mb-4 flex items-center text-gray-800">
           <Terminal className="w-5 h-5 mr-2 transform transition-transform duration-200 ease-in-out hover:rotate-12" />
           <span className="transition-colors duration-200 ease-in-out hover:text-gray-900">
-            Project Structure - Clean Architecture
+            {section
+              ? `Project Structure - ${
+                  section.charAt(0).toUpperCase() + section.slice(1)
+                }`
+              : "Project Structure - Clean Architecture"}
           </span>
         </h2>
         <div className="flex gap-2 mb-4 overflow-x-auto">
@@ -300,11 +218,11 @@ const ProjectTree: React.FC<{ fileContents: Record<string, string> }> = ({
         </div>
         <div className="border rounded-lg overflow-hidden transition-all duration-200 ease-in-out hover:border-gray-300">
           <TreeNode
-            node={sampleProject}
+            node={filteredProject}
             level={1}
             onFileSelect={handleFileSelect}
-            fileContents={fileContents}
             expandedLevel={expandedLevel}
+            fileContents={fileContents}
           />
         </div>
       </div>

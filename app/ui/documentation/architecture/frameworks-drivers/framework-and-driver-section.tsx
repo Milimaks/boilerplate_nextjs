@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/app/ui/code-block";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -65,83 +66,50 @@ export default function FrameworkAndDriversSection() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">
-          Comment la Clean Architecture structure le code&nbsp;?
+          Exemple de code pour l'authentification
         </h2>
+        <CodeBlock>
+          {`// app/login/page.tsx
+"use client"
+import { useState } from "react"
+import { loginController } from "@/controllers/auth/loginController"
+
+export default function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+{/* UI doesn't matter about login logic, it call loginController instead */}
+  const handleSubmit = async () => {
+    await loginController({ email, password })
+  }
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); handleSubmit() }}>
+      <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button type="submit">Se connecter</button>
+    </form>
+  )
+}`}
+        </CodeBlock>
         <p className="text-md leading-relaxed">
-          Elle divise la base de code en plusieurs couches :
+          Dans cet exemple, la page de connexion ne sait rien de la logique
+          d'authentification. Elle appelle simplement le{" "}
+          <strong>loginController</strong>, qui lui est responsable de la
+          logique métier.
         </p>
-        <ul className="list-disc list-inside space-y-4 text-md">
-          <li>
-            <strong>
-              <Link
-                href="architecture/frameworks-drivers"
-                className={cn(buttonVariants({ variant: "link" }), "text-md")}
-                target="_blank"
-              >
-                Frameworks & Drivers
-              </Link>
-            </strong>{" "}
-            — toute la logique liée au framework UI.
-            <br />
-            Dans Next.js, cela inclut les route handlers, server actions, RSCs,
-            pages, composants, etc.
-          </li>
-          <li>
-            <strong>
-              <Link
-                href="architecture/interface-adapters"
-                className={cn(buttonVariants({ variant: "link" }), "text-md")}
-              >
-                Interface Adapters
-              </Link>
-            </strong>{" "}
-            — contient les contrôleurs (orchestrent les use-cases) et les
-            présentateurs (convertissent les données pour la UI).
-            <br />
-            Les contrôleurs gèrent la validation avant de déléguer aux
-            use-cases.
-          </li>
-          <li>
-            <strong>
-              <Link
-                href="architecture/application"
-                className={cn(buttonVariants({ variant: "link" }), "text-md")}
-              >
-                Application
-              </Link>
-            </strong>{" "}
-            — la logique métier principale.
-            <br />
-            Elle contient les use-cases et les interfaces des infrastructures.
-            C’est ici qu’on fait les vérifications d’autorisation.
-          </li>
-          <li>
-            <strong>
-              <Link
-                href="architecture/entities"
-                className={cn(buttonVariants({ variant: "link" }), "text-md")}
-              >
-                Entities
-              </Link>
-            </strong>{" "}
-            — les définitions des modèles, les erreurs et toute structure de
-            données fondamentale.
-          </li>
-          <li>
-            <strong>
-              <Link
-                href="architecture/infrastructure"
-                className={cn(buttonVariants({ variant: "link" }), "text-md")}
-              >
-                Infrastructure
-              </Link>
-            </strong>{" "}
-            — implémente les interfaces définies dans l’application.
-            <br />
-            Regroupe les services partagés (auth, base de données, API
-            externes...).
-          </li>
-        </ul>
+        <br />
+        <p className="text-md leading-relaxed">
+          Le <strong>loginController</strong>, qui se situe dans la couche{" "}
+          <strong>Interface Adapters</strong>, prend en charge la gestion de la
+          demande de connexion en agissant comme un intermédiaire entre
+          l'interface utilisateur et la couche métier. Il appelle des services,
+          comme le service d'authentification ou de gestion des utilisateurs,
+          pour valider les informations de connexion. Après avoir reçu les
+          données, il peut effectuer des opérations comme la validation des
+          identifiants ou la génération de tokens d'authentification, puis
+          renvoyer une réponse appropriée à l'utilisateur (succès ou erreur).
+        </p>
       </section>
     </section>
   );

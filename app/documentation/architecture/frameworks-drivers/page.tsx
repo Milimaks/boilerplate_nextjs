@@ -3,6 +3,7 @@ import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
 import { links } from "@/app/ui/documentation/architecture/data";
 import { NavPagination } from "@/app/ui/nav-pagination";
 import { useEffect, useState } from "react";
+import FrameworkAndDriversSection from "@/app/ui/documentation/architecture/frameworks-drivers/framework-and-driver-section";
 
 export default function Page() {
   // Fetch all files from the server for the project tree
@@ -22,6 +23,7 @@ export default function Page() {
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
         <ProjectTree fileContents={fileContents} section="framework" />
+        <FrameworkAndDriversSection />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
     </main>

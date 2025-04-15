@@ -45,7 +45,6 @@ export const sampleProject: TreeNode = {
     {
       name: "di",
       description: "Dependency Injection",
-      section: "framework",
       type: "folder",
       children: [{ name: "modules", type: "folder", children: [] }],
     },

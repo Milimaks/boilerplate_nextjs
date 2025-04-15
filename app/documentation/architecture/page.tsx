@@ -5,7 +5,7 @@ import CleanArchitectureOverview from "@/app/ui/documentation/architecture/clean
 import { links } from "@/app/ui/documentation/architecture/data";
 import { MoreRessources } from "@/app/ui/more-ressources";
 import { NavPagination } from "@/app/ui/nav-pagination";
-import { externalLinks } from "./interfaces-adapters/external-ressources";
+import { externalLinks } from "./external-ressources";
 
 export default function Page() {
   const sections = [

@@ -12,6 +12,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { CodeBlock } from "../../code-block";
 
 type TreeNode = {
   name: string;
@@ -22,6 +23,7 @@ type TreeNode = {
   section?: string;
 };
 
+// Icon components depending on the file type
 const getFileIcon = (fileName: string) => {
   if (fileName.endsWith(".ts") || fileName.endsWith(".tsx"))
     return <Code className="w-4 h-4 text-blue-500" />;
@@ -178,7 +180,7 @@ const ProjectTree: React.FC<{
 
   return (
     <div className="flex gap-6">
-      <div className="w-1/2 p-6 bg-white rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:shadow-xl">
+      <section className="w-1/2 p-6 bg-white rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:shadow-xl">
         <h2 className="text-xl font-bold mb-4 flex items-center text-gray-800">
           <Terminal className="w-5 h-5 mr-2 transform transition-transform duration-200 ease-in-out hover:rotate-12" />
           <span className="transition-colors duration-200 ease-in-out hover:text-gray-900">
@@ -225,22 +227,22 @@ const ProjectTree: React.FC<{
             fileContents={fileContents}
           />
         </div>
-      </div>
-      <div className="w-1/2 p-6 bg-white rounded-lg shadow-lg">
+      </section>
+      <section className="w-1/2 p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-xl font-bold mb-4 flex items-center text-gray-800">
           <Code className="w-5 h-5 mr-2" />
           <span>{selectedFileName || "File Content"}</span>
         </h2>
         <div className="border rounded-lg p-4 bg-gray-50 font-mono text-sm overflow-auto max-h-[600px]">
           {selectedFileContent ? (
-            <pre className="whitespace-pre-wrap">{selectedFileContent}</pre>
+            <CodeBlock>{selectedFileContent}</CodeBlock>
           ) : (
             <div className="text-gray-500 italic">
               Select a .ts or .tsx file to view its content
             </div>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

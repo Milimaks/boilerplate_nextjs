@@ -3,6 +3,7 @@ import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
 import { links } from "@/app/ui/documentation/architecture/data";
 import { NavPagination } from "@/app/ui/nav-pagination";
 import { useEffect, useState } from "react";
+import { CleanArchitectureFlow } from "@/app/ui/documentation/architecture/clean-architecture-flow";
 
 export default function Page() {
   // Fetch all files from the server for the project tree
@@ -31,6 +32,7 @@ export default function Page() {
           code.
         </p>
         <ProjectTree fileContents={fileContents} />
+        <CleanArchitectureFlow />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
     </main>

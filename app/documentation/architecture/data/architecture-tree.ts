@@ -100,14 +100,28 @@ export const sampleProject: TreeNode = {
         },
         {
           name: "interface-adapters",
+          section: "adapters",
           type: "folder",
           children: [
             {
-              name: "controllers",
+              name: "auth",
               type: "folder",
               children: [
-                { name: "auth", type: "folder", children: [] },
-                { name: "todos", type: "folder", children: [] },
+                {
+                  name: "sign-in.controller.ts",
+                  type: "file",
+                  content: "sign-in.controller.ts",
+                },
+                {
+                  name: "sign-out.controller.ts",
+                  type: "file",
+                  content: "sign-out.controller.ts",
+                },
+                {
+                  name: "sign-up.controller.ts",
+                  type: "file",
+                  content: "sign-up.controller.ts",
+                },
               ],
             },
           ],

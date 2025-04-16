@@ -21,6 +21,7 @@ export default function Page() {
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4">
         <CleanArchitectureOverview />
+
         <MoreRessources externalLinks={externalLinks} />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>

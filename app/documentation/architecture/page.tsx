@@ -1,6 +1,6 @@
 "use client";
-import { useArticleProgress } from "@/app/lib/custom-hooks";
-import { ArticleProgress } from "@/app/ui/articleProgess";
+import { useArticleProgress } from "@/lib/hooks/custom-hooks";
+import { ArticleProgress } from "@/components/reusable/articleProgess";
 import CleanArchitectureOverview from "@/components/features/documentation/architecture/clean-architecture-overview";
 import { links } from "@/components/features/documentation/architecture/data/navigation-data";
 import { MoreRessources } from "@/components/reusable/more-ressources";

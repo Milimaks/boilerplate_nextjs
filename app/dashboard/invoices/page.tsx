@@ -5,7 +5,7 @@ import { CreateInvoice } from "@/components/features/invoices/buttons";
 import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/components/reusable/skeletons";
 import { Suspense } from "react";
-import { fetchInvoicesPages } from "@/app/lib/data";
+import { fetchInvoicesPages } from "@/lib/queries/data";
 
 export default async function Page(props: {
   searchParams?: Promise<{ query?: string; page?: string }>;

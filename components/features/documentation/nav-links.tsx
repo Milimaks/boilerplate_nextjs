@@ -1,6 +1,6 @@
 "use client";
 
-import { NavSection } from "@/app/lib/definitions";
+import { NavSection } from "@/lib/validation/definitions";
 import { cn } from "@/lib/utils";
 import {
   DocumentDuplicateIcon,

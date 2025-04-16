@@ -4,8 +4,8 @@ import {
   DeleteInvoice,
 } from "@/components/features/invoices/buttons";
 import InvoiceStatus from "@/components/features/invoices/status";
-import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredInvoices } from "@/app/lib/data";
+import { formatDateToLocal, formatCurrency } from "@/lib/utils/utils";
+import { fetchFilteredInvoices } from "@/lib/queries/data";
 
 export default async function InvoicesTable({
   query,

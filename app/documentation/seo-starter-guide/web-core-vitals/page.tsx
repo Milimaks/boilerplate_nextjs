@@ -1,7 +1,7 @@
 "use client";
 
-import { useArticleProgress } from "@/app/lib/custom-hooks";
-import { ArticleProgress } from "@/app/ui/articleProgess";
+import { useArticleProgress } from "@/lib/hooks/custom-hooks";
+import { ArticleProgress } from "@/components/reusable/articleProgess";
 import { links } from "@/components/features/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/components/reusable/nav-pagination";
 import { buttonVariants } from "@/components/ui/button";

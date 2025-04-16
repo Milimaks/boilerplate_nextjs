@@ -1,4 +1,4 @@
-import NavLinks from "@/app/ui/documentation/nav-links";
+import NavLinks from "@/components/features/documentation/nav-links";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "auth";
 import { Search } from "lucide-react";

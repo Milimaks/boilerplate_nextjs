@@ -1,4 +1,5 @@
 "use client";
+import { CodeBlock } from "@/components/reusable/code-block";
 import {
   Collapsible,
   CollapsibleContent,
@@ -13,7 +14,6 @@ import {
   User,
   UserCheck,
 } from "lucide-react";
-import { CodeBlock } from "../../code-block";
 import { useState } from "react";
 
 export function CleanArchitectureFlow() {

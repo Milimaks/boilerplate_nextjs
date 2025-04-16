@@ -2,14 +2,14 @@
 
 import { useArticleProgress } from "@/app/lib/custom-hooks";
 import { ArticleProgress } from "@/app/ui/articleProgess";
-import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/app/ui/nav-pagination";
+import { links } from "@/components/features/documentation/seo-starter-guide/data";
+import { NavPagination } from "@/components/reusable/nav-pagination";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { Code } from "@/app/ui/code";
-import { InlineCode } from "@/app/ui/inlineCode";
-import { Section } from "@/app/ui/section";
+import { Code } from "@/components/reusable/code";
+import { InlineCode } from "@/components/reusable/inlineCode";
+import { Section } from "@/components/reusable/section";
 
 export default function Page() {
   const sections = [

@@ -1,5 +1,6 @@
 "use client";
-import { sampleProject } from "@/app/documentation/architecture/data/architecture-tree";
+import { sampleProject } from "@/components/features/documentation/architecture/data/architecture-tree";
+import { CodeBlock } from "@/components/reusable/code-block";
 import {
   ChevronRight,
   Code,
@@ -12,7 +13,6 @@ import {
   Terminal,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { CodeBlock } from "../../code-block";
 
 type TreeNode = {
   name: string;

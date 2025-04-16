@@ -1,7 +1,7 @@
 "use client";
-import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
-import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/app/ui/nav-pagination";
+import ProjectTree from "@/components/features/documentation/architecture/project-tree";
+import { links } from "@/components/features/documentation/architecture/data/navigation-data";
+import { NavPagination } from "@/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
 
 export default function Page() {

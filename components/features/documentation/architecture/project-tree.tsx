@@ -36,6 +36,7 @@ const getFileIcon = (fileName: string) => {
   return <FileText className="w-4 h-4 text-gray-500" />;
 };
 
+// TreeNode component to render each node in the tree structure
 const TreeNode: React.FC<{
   fileContents: Record<string, string>;
   node: TreeNode;
@@ -121,6 +122,7 @@ const TreeNode: React.FC<{
   );
 };
 
+// Function to filter the project tree by section
 const filterProjectBySection = (
   project: TreeNode,
   section?: string
@@ -159,6 +161,8 @@ const filterProjectBySection = (
     children: matchingNodes,
   };
 };
+
+// Main ProjectTree component
 const ProjectTree: React.FC<{
   fileContents: Record<string, string>;
   section?: string;
@@ -179,7 +183,7 @@ const ProjectTree: React.FC<{
   };
 
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 w-full">
       <section className="w-1/2 p-6 bg-white rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:shadow-xl">
         <h2 className="text-xl font-bold mb-4 flex items-center text-gray-800">
           <Terminal className="w-5 h-5 mr-2 transform transition-transform duration-200 ease-in-out hover:rotate-12" />

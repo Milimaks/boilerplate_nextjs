@@ -21,55 +21,30 @@ export default function InterfaceAdaptersSection() {
           >
             Clean Architecture
           </Link>
-          , cette couche agit comme un intermédiaire entre la couche de
-          présentation (UI) et la logique métier (Use Cases). Elle est
-          responsable de l’adaptation des données et des événements afin qu’ils
-          puissent être traités correctement par la couche métier.
+          Cette couche définit les Controllers (qui orchestrent les use cases)
+          et les Presenters (qui transforment les résultats des controllers en
+          données adaptées à l’interface). Les controllers gèrent la validation
+          des entrées avant de les transmettre aux use cases spécifiques.
         </p>
         <br />
         <p>
-          Dans le <strong>front-end</strong> (ex: Next.js), cela inclut :
+          La couche <strong>"Interface Adapters"</strong> est responsable de:
         </p>
         <ul className="list-disc list-inside space-y-2 text-md">
           <li>
-            les contrôleurs (par exemple, pour gérer les actions utilisateur
-            comme la connexion),
+            <strong>Adapter l’entrée</strong> : les <strong>controllers</strong>{" "}
+            reçoivent les données venant de l’extérieur (UI, requêtes HTTP), les
+            valident et les formattent pour les passer aux use cases.
           </li>
           <li>
-            les adaptateurs pour transformer des objets ou des données de l'UI
-            pour qu'ils puissent être utilisés par la couche métier,
+            <strong>Adapter la sortie</strong> : les <strong>presenters</strong>{" "}
+            ou view models prennent les réponses des use cases (souvent en
+            format brut) et les transforment en un format compréhensible pour
+            l’UI.
           </li>
           <li>
             les interfaces de communication avec les services externes (API,
             bases de données),
-          </li>
-          <li>les réponses HTTP adaptées aux besoins de l’UI.</li>
-        </ul>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">
-          Quel est le rôle exact de cette couche ?
-        </h2>
-        <p>
-          La couche <strong>"Interface Adapters"</strong> a pour but de
-          transformer et adapter les données entre les différentes couches de
-          l’application. Plus précisément, elle :
-        </p>
-        <ul className="list-disc list-inside space-y-2 text-md">
-          <li>
-            reçoit des données et des événements de l'UI ou de services
-            externes,
-          </li>
-          <li>
-            les transforme pour qu'ils puissent être utilisés par la couche
-            métier (par exemple, en validant ou formatant les données),
-          </li>
-          <li>
-            transmet ces données ou événements aux use cases (logique métier),
-          </li>
-          <li>
-            et retourne des résultats adaptés à l'UI ou à des services externes.
           </li>
         </ul>
         <p className="text-md leading-relaxed">
@@ -89,18 +64,39 @@ export default function InterfaceAdaptersSection() {
           {`// controllers/auth/loginController.ts
 import { loginUseCase } from "@/application/use-cases/auth/loginUseCase"
 
-export const loginController = async ({ email, password }: { email: string; password: string }) => {
-  return await loginUseCase({ email, password })
+type LoginInput = {
+  email: string
+  password: string
 }
+
+export async function loginController({ email, password }: LoginInput) {
+  // Here we might perform input validation if needed
+  if (!email || !password) {
+    throw new Error("Email and password are required")
+  }
+
+  try {
+    // Call the use case to handle the business logic
+    const result = await loginUseCase.execute({ email, password })
+
+    // Example of adapting the output for the UI: storing the token
+    localStorage.setItem("token", result.token)
+    // Or redirecting, displaying a message, etc.
+
+    return result
+  } catch (error) {
+    console.error("Login error:", error)
+    throw error
+  }
+}
+
 `}
         </CodeBlock>
         <p className="text-md leading-relaxed">
-          Dans cet exemple, la page de connexion fait appel au{" "}
-          <strong>loginController</strong> de la couche{" "}
-          <strong>Interface Adapters</strong>, mais elle ne gère pas directement
-          la logique d’authentification. La page se contente de collecter les
-          informations de connexion et de transmettre ces données au contrôleur,
-          qui va ensuite traiter la demande.
+          Ce <strong>controller</strong> sert de couche intermédiaire : il
+          reçoit les données de l’UI, valide, appelle le use case et adapte le
+          résultat pour le front (ici, via <strong>localStorage</strong>, mais
+          on pourrait aussi afficher un toast, rediriger, etc.).
         </p>
         <br />
         <p className="text-md leading-relaxed">

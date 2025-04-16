@@ -25,16 +25,6 @@ export default function Page() {
         <MoreRessources externalLinks={externalLinks} />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
-      {/* Progress of the article */}
-
-      <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
-      </div>
     </main>
   );
 }

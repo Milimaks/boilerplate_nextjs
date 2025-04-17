@@ -44,7 +44,7 @@ const TreeNode: React.FC<{
   onFileSelect: (content: string, fileName: string) => void;
   expandedLevel: number;
 }> = ({ node, level, onFileSelect, fileContents, expandedLevel }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const paddingLeft = `${level * 1.5}rem`;
 
   useEffect(() => {

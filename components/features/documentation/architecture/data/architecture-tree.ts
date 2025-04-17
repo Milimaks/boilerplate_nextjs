@@ -37,8 +37,8 @@ export const sampleProject: TreeNode = {
         { name: "_components", type: "folder", children: [] },
         { name: "action.ts", type: "file" },
         { name: "add-todo.tsx", type: "file" },
-        { name: "layout.tsx", type: "file" },
-        { name: "page.tsx", type: "file" },
+        { name: "layout.tsx", type: "file", content: "layout.tsx" },
+        { name: "page.tsx", type: "file", content: "page.tsx" },
       ],
     },
     { name: "assets", type: "folder", children: [] },
@@ -61,6 +61,7 @@ export const sampleProject: TreeNode = {
         {
           name: "application",
           type: "folder",
+          section: "application",
           children: [
             {
               name: "repositories",
@@ -78,8 +79,38 @@ export const sampleProject: TreeNode = {
                 },
               ],
             },
-            { name: "services", type: "folder", children: [] },
-            { name: "use-cases", type: "folder", children: [] },
+            {
+              name: "services",
+              type: "folder",
+              children: [
+                {
+                  name: "authentication.service.interface.ts",
+                  type: "file",
+                  content: "authentication.service.interface.ts",
+                },
+              ],
+            },
+            {
+              name: "use-cases",
+              type: "folder",
+              children: [
+                {
+                  name: "sign-in.use-case.ts",
+                  type: "file",
+                  content: "sign-in.use-case.ts",
+                },
+                {
+                  name: "sign-up.use-case.ts",
+                  type: "file",
+                  content: "sign-up.use-case.ts",
+                },
+                {
+                  name: "sign-out.use-case.ts",
+                  type: "file",
+                  content: "sign-out.use-case.ts",
+                },
+              ],
+            },
           ],
         },
         {

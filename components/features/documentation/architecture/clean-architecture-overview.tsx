@@ -69,7 +69,7 @@ export default function CleanArchitectureOverview() {
         <p className="text-md leading-relaxed">
           Elle divise la base de code en plusieurs couches :
         </p>
-        <ul className="list-disc list-inside space-y-4 text-md">
+        <ul className="list-decimal space-y-4 text-md">
           <li>
             <strong>
               <Link
@@ -80,10 +80,10 @@ export default function CleanArchitectureOverview() {
                 Frameworks & Drivers
               </Link>
             </strong>{" "}
-            — toute la logique liée au framework UI.
+            — <strong>toute la logique liée au framework UI.</strong>
             <br />
-            Dans Next.js, cela inclut les route handlers, server actions, RSCs,
-            pages, composants, etc.
+            Ex : Les route handlers, server actions, RSCs, pages, composants,
+            etc.
           </li>
           <li>
             <strong>
@@ -94,8 +94,11 @@ export default function CleanArchitectureOverview() {
                 Interface Adapters
               </Link>
             </strong>{" "}
-            — contient les contrôleurs (orchestrent les use-cases) et les
-            présentateurs (convertissent les données pour la UI).
+            —{" "}
+            <strong>
+              contient les contrôleurs (orchestrent les use-cases) et les
+              présentateurs (convertissent les données pour la UI).
+            </strong>
             <br />
             Les contrôleurs gèrent la validation avant de déléguer aux
             use-cases.
@@ -109,7 +112,7 @@ export default function CleanArchitectureOverview() {
                 Application
               </Link>
             </strong>{" "}
-            — la logique métier principale.
+            — <strong>la logique métier principale.</strong>
             <br />
             Elle contient les use-cases et les interfaces des infrastructures.
             C’est ici qu’on fait les vérifications d’autorisation.
@@ -123,8 +126,11 @@ export default function CleanArchitectureOverview() {
                 Entities
               </Link>
             </strong>{" "}
-            — les définitions des modèles, les erreurs et toute structure de
-            données fondamentale.
+            —{" "}
+            <strong>
+              les définitions des modèles, les erreurs et toute structure de
+              données fondamentale.
+            </strong>
           </li>
           <li>
             <strong>
@@ -135,7 +141,10 @@ export default function CleanArchitectureOverview() {
                 Infrastructure
               </Link>
             </strong>{" "}
-            — implémente les interfaces définies dans l’application.
+            —{" "}
+            <strong>
+              implémente les interfaces définies dans l’application.
+            </strong>
             <br />
             Regroupe les services partagés (auth, base de données, API
             externes...).

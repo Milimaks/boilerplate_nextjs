@@ -2,16 +2,17 @@ import NavLinks from "@/components/features/documentation/nav-links";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "auth";
 import { Search } from "lucide-react";
+import { links } from "./data/nav-links";
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-gray-50">
+    <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-gray-50 overflow-y-auto">
       <div className="flex items-center gap-3 mb-8">
         <Search className="w-6 h-6 text-gray-400" />
         <h1 className="text-xl font-semibold text-gray-900">Documentation</h1>
       </div>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
+        <NavLinks links={links} />
         <div className="hidden h-auto w-full grow rounded-md  md:block"></div>
         <form
           action={async () => {

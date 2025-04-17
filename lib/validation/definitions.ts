@@ -2,7 +2,7 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 
-import { ForwardRefExoticComponent, SVGProps } from "react";
+import { ElementType, ForwardRefExoticComponent, SVGProps } from "react";
 
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type User = {
@@ -91,13 +91,16 @@ export type InvoiceForm = {
 };
 
 // Navigation Section
+export type IconName = "home" | "document" | "users";
+
+export interface NavItem {
+  name: string;
+  href: string;
+  icon?: IconName;
+  submenu?: NavItem[];
+}
 
 export interface NavSection {
   title: string;
-  items: {
-    name: string;
-    icon: ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, "ref">>;
-    href: string;
-    submenu?: { name: string; href: string }[];
-  }[];
+  items: NavItem[];
 }

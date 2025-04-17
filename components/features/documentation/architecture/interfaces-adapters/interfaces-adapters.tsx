@@ -20,11 +20,12 @@ export default function InterfaceAdaptersSection() {
             rel="noopener noreferrer"
           >
             Clean Architecture
-          </Link>
-          Cette couche définit les Controllers (qui orchestrent les use cases)
-          et les Presenters (qui transforment les résultats des controllers en
-          données adaptées à l’interface). Les controllers gèrent la validation
-          des entrées avant de les transmettre aux use cases spécifiques.
+          </Link>{" "}
+          cette couche définit les <strong>Controllers</strong> (qui orchestrent
+          les use cases) et les <strong>Presenters</strong> (qui transforment
+          les résultats des controllers en données adaptées à l’interface). Les
+          controllers gèrent la validation des entrées avant de les transmettre
+          aux use cases spécifiques.
         </p>
         <br />
         <p>

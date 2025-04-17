@@ -103,12 +103,7 @@ export default function LoginPage() {
           Le <strong>loginController</strong>, qui se situe dans la couche{" "}
           <strong>Interface Adapters</strong>, prend en charge la gestion de la
           demande de connexion en agissant comme un intermédiaire entre
-          l'interface utilisateur et la couche métier. Il appelle des services,
-          comme le service d'authentification ou de gestion des utilisateurs,
-          pour valider les informations de connexion. Après avoir reçu les
-          données, il peut effectuer des opérations comme la validation des
-          identifiants ou la génération de tokens d'authentification, puis
-          renvoyer une réponse appropriée à l'utilisateur (succès ou erreur).
+          l'interface utilisateur et la couche métier.
         </p>
       </section>
     </section>

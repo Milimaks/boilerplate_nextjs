@@ -76,6 +76,12 @@ export const links: NavSection[] = [
         ],
         icon: "users",
       },
+      {
+        name: "React Reminder",
+        href: "/documentation/react-reminder",
+
+        icon: "users",
+      },
     ],
   },
 ];

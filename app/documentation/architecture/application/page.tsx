@@ -1,8 +1,9 @@
 "use client";
-import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
-import { links } from "@/app/ui/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/app/ui/nav-pagination";
+import ProjectTree from "@/components/features/documentation/architecture/project-tree";
+import { links } from "@/components/features/documentation/architecture/data/navigation-data";
+import { NavPagination } from "@/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
+import ApplicationSection from "@/components/features/documentation/architecture/application/application-section";
 
 export default function Page() {
   // Fetch all files from the server for the project tree
@@ -21,7 +22,8 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
-        <ProjectTree fileContents={fileContents} />
+        <ProjectTree fileContents={fileContents} section="application" />
+        <ApplicationSection />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
     </main>

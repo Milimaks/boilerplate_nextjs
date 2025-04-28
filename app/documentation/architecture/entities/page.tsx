@@ -1,7 +1,7 @@
 "use client";
-import ProjectTree from "@/app/ui/documentation/architecture/project-tree";
-import { links } from "@/app/ui/documentation/architecture/data";
-import { NavPagination } from "@/app/ui/nav-pagination";
+import ProjectTree from "@/components/features/documentation/architecture/project-tree";
+import { links } from "@/components/features/documentation/architecture/data/navigation-data";
+import { NavPagination } from "@/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
-        <ProjectTree fileContents={fileContents} />
+        <ProjectTree fileContents={fileContents} section="entities" />
         <NavPagination links={links} className="pt-20 pb-6" />
       </div>
     </main>

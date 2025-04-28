@@ -113,7 +113,7 @@ export default function NavLinks({ links }: NavLinksProps) {
                         className={cn(
                           "ml-6 space-y-1 transition-all duration-200 ease-in-out",
                           openSubmenu[item.name]
-                            ? "max-h-40 opacity-100 transition-all duration-300 ease-in-out"
+                            ? " opacity-100 transition-all duration-300 ease-in-out"
                             : "max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
                         )}
                       >

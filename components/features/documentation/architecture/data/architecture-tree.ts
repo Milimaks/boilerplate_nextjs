@@ -117,8 +117,53 @@ export const sampleProject: TreeNode = {
           name: "entities",
           type: "folder",
           children: [
-            { name: "errors", type: "folder", children: [] },
-            { name: "models", type: "folder", children: [] },
+            {
+              name: "errors",
+              type: "folder",
+              children: [
+                {
+                  name: "auth.ts",
+                  type: "file",
+                  content: "auth.ts",
+                },
+                {
+                  name: "common.ts",
+                  type: "file",
+                  content: "common.ts",
+                },
+              ],
+            },
+            {
+              name: "models",
+              type: "folder",
+              children: [
+                {
+                  name: "cookie.ts",
+                  type: "file",
+                  content: "cookie.ts",
+                },
+                {
+                  name: "session.ts",
+                  type: "file",
+                  content: "session.ts",
+                },
+                {
+                  name: "todo.ts",
+                  type: "file",
+                  content: "todo.ts",
+                },
+                {
+                  name: "transaction.interface.ts",
+                  type: "file",
+                  content: "transaction.interface.ts",
+                },
+                {
+                  name: "user.ts",
+                  type: "file",
+                  content: "entity-user.ts",
+                },
+              ],
+            },
           ],
         },
         {

@@ -1,104 +1,161 @@
+"use client";
 import { CodeBlock } from "@/components/reusable/code-block";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Table,
+} from "@/components/ui/table";
 
 export default function EntitiesSection() {
   return (
     <section className="max-w-4xl mx-auto  space-y-12 text-gray-800 dark:text-gray-100 pt-8">
       <section className="space-y-4">
         <h1 className="text-4xl font-bold">Présentation</h1>
-        <h2 className="text-2xl font-semibold">
-          Définition de "Frameworks & Drivers" ?
-        </h2>
+        <h2 className="text-2xl font-semibold">Qu'est-ce que les Entities ?</h2>
         <p className="text-md leading-relaxed">
-          Dans la{" "}
-          <Link
-            href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html"
-            className={cn(buttonVariants({ variant: "link" }), "text-md")}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Clean Architecture
-          </Link>
-          , cette couche représente tout ce qui est extérieur au cœur de ton
-          application. C’est la partie la plus dépendante des outils,
-          bibliothèques, ou plateformes.
+          Les <strong>Entities</strong> représentent des objets métier dans
+          notre <strong>domaine*</strong>. Ce sont des concepts qui existent
+          indépendamment de la persistance des données et qui sont utilisés pour
+          la logique métier. Une entity est souvent un modèle qui contient des
+          données et des méthodes qui leur sont associées.
         </p>
-        <br />
         <p>
-          Dans le <strong>front-end</strong> (ex: Next.js), cela inclut :
+          <i>
+            <strong>Domaine</strong> = Ensemble des concepts et règles liés à un
+            domaine d'activité ou un secteur spécifique dans une application.
+            <br />
+            (Exemple : Dans une application de gestion de bibliothèque, le
+            domaine inclut des concepts comme livres, emprunts, et
+            utilisateurs.)
+          </i>
         </p>
+        <h2 className="text-2xl font-semibold">Ses responsabilités</h2>
         <ul className="list-disc list-inside space-y-2 text-md">
-          <li>le framework (Next.js, React),</li>
-          <li>les bibliothèques UI (Tailwind, ShadCN),</li>
-          <li>les appels HTTP (fetch, axios),</li>
-          <li>les SDK externes (Sentry, Auth0, Stripe…),</li>
-          <li>le routeur (Next.js routing),</li>
-          <li>le DOM lui-même.</li>
-        </ul>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">
-          Quel est le rôle exact de cet couche ?
-        </h2>
-        <p>
-          La couche <strong>"Frameworks & Drivers"</strong> n'implémente pas la
-          logique métier. Elle se contente :
-        </p>
-        <ul className="list-disc list-inside space-y-2 text-md">
-          <li>d’appeler des use cases,</li>
-          <li>de recevoir ou afficher des données,</li>
           <li>
-            de traduire les événements du monde extérieur (clic, route, réponse
-            HTTP…) en actions métier.
+            Représenter un objet ou une entité dans le domaine métier (ex:
+            Utilisateur, Produit, Commande).
+          </li>
+          <li>
+            Contenir des données et des comportements associés à ces données
+            (logique métier de l'entité).
+          </li>
+          <li>
+            Être indépendante de la couche de persistance (base de données).
           </li>
         </ul>
-        <p className="text-md leading-relaxed">
-          Les Frameworks & Drivers ne font que déléguer. Ils ne contiennent pas
-          de décisions métier. Cette séparation est utile car elle permet
-          théoriquement de changer de framework UI sans toucher à la logique
-          métier. Tu peux tester aussi tes use-cases sans avoir besoin du DOM et
-          chaque couche n'a qu'un seul rôle.
-        </p>
       </section>
 
       <section className="space-y-4">
+        <h2 className="text-2xl font-semibold">Exemple d'une Entity "User"</h2>
+        <CodeBlock>
+          {`// entities/user.ts
+
+export class User {
+  constructor(
+    public id: string,
+    public username: string,
+    public email: string,
+    public passwordHash: string
+  ) {}
+
+  // Method to check if the user is active
+  isActive(): boolean {
+    return this.username !== '';
+  }
+
+  // Method to change the user's password
+  changePassword(newPassword: string): void {
+    this.passwordHash = newPassword;
+  }
+}
+
+`}
+        </CodeBlock>
+        <p className="text-md leading-relaxed">
+          Cette <strong>entity</strong> `User` contient des données telles que
+          l'`id`, `username`, `email` et `passwordHash`. Elle possède également
+          des méthodes qui encapsulent des comportements métier comme{" "}
+          <code>isActive</code> et <code>changePassword</code>.
+        </p>
+        <br />
+
         <h2 className="text-2xl font-semibold">
-          Exemple de code pour l'authentification
+          Exemple de code d'utilisation dans la couche Application
         </h2>
         <CodeBlock>
-          {`// application/use-cases/auth/loginUseCase.ts
-import { authRepository } from "@/infrastructure/repositories/authRepository"
+          {`// application/use-cases/user/createUserUseCase.ts
 
-export const loginUseCase = async ({ email, password }: { email: string; password: string }) => {
-  const result = await authRepository.login(email, password)
-  if (!result.success) {
-    throw new Error("Connexion échouée")
+import { User } from "@/domain/entities/user";
+import { UserRepository } from "@/domain/repositories/userRepository";
+
+export class CreateUserUseCase {
+  constructor(private userRepository: UserRepository) {}
+
+  async execute(username: string, email: string, password: string): Promise<User> {
+    // Créer une nouvelle instance de User
+    const user = new User("generated-id", username, email, password);
+
+    // Enregistrer l'utilisateur dans le repository
+    await this.userRepository.save(user);
+
+    return user;
   }
-  return result.user
 }
 `}
         </CodeBlock>
         <p className="text-md leading-relaxed">
-          Dans cet exemple, la page de connexion ne sait rien de la logique
-          d'authentification. Elle appelle simplement le{" "}
-          <strong>loginController</strong>, qui lui est responsable de la
-          logique métier.
+          Dans cet exemple, la couche <strong>Application</strong> utilise
+          l'entity `User` pour créer un nouvel utilisateur. L'entité est
+          utilisée sans se soucier de la persistance des données (c'est-à-dire,
+          de l'endroit où les données sont stockées). La persistance est gérée
+          par un <strong>repository</strong>, injecté dans le cas d'usage.
         </p>
         <br />
-        <p className="text-md leading-relaxed">
-          Le <strong>loginController</strong>, qui se situe dans la couche{" "}
-          <strong>Interface Adapters</strong>, prend en charge la gestion de la
-          demande de connexion en agissant comme un intermédiaire entre
-          l'interface utilisateur et la couche métier. Il appelle des services,
-          comme le service d'authentification ou de gestion des utilisateurs,
-          pour valider les informations de connexion. Après avoir reçu les
-          données, il peut effectuer des opérations comme la validation des
-          identifiants ou la génération de tokens d'authentification, puis
-          renvoyer une réponse appropriée à l'utilisateur (succès ou erreur).
-        </p>
+
+        {/* Conclusion of Entities Layer */}
+        <Card className="max-w-3xl mx-auto mt-6">
+          <CardContent className="p-6">
+            <h2 className="text-xl font-semibold mb-4">
+              Résumé — Couche Entities
+            </h2>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Élément</TableHead>
+                  <TableHead>Rôle dans la couche Entities</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">User</TableCell>
+                  <TableCell>
+                    Représente un utilisateur dans le domaine métier
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">
+                    isActive(), changePassword()
+                  </TableCell>
+                  <TableCell>
+                    Méthodes qui encapsulent la logique métier
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">UserRepository</TableCell>
+                  <TableCell>Repository pour persister l'entité User</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Ne contient pas</TableCell>
+                  <TableCell>Logique de persistance, framework, UI</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
       </section>
     </section>
   );

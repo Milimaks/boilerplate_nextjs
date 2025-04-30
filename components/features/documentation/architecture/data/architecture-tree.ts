@@ -116,6 +116,7 @@ export const sampleProject: TreeNode = {
         {
           name: "entities",
           type: "folder",
+          section: "entities",
           children: [
             {
               name: "errors",

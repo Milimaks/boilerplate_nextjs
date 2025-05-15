@@ -20,8 +20,6 @@ export default function Page() {
     { id: "best-practices", title: "Best Practices" },
   ];
 
-  const activeSection = useArticleProgress(sections);
-
   return (
     <main className="flex flex-row justify-center">
       <div id="content" className="max-w-4xl px-4   ">
@@ -149,12 +147,7 @@ export default function Page() {
       {/* Progress of the article */}
 
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
+        <ArticleProgress sections={sections} />
       </div>
     </main>
   );

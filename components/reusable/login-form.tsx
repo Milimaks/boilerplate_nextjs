@@ -1,86 +1,52 @@
-"use client";
-
-import { lusitana } from "@/app/ui/fonts";
-import {
-  AtSymbolIcon,
-  KeyIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { authenticate } from "@/lib/actions/action";
-import { useSearchParams } from "next/navigation";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
-export default function LoginForm() {
+export function LoginForm({
+  className,
+  onSwitchToSignUp,
+  ...props
+}: React.ComponentPropsWithoutRef<"form"> & { onSwitchToSignUp?: () => void }) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined
   );
-
   return (
-    <form action={formAction} className="space-y-6">
+    <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className={`${lusitana.className} text-2xl font-bold`}>
-          Login to your account
-        </h1>
-        <p className="text-sm text-gray-500">
+        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <p className="text-balance text-sm text-muted-foreground">
           Enter your email below to login to your account
         </p>
       </div>
       <div className="grid gap-6">
         <div className="grid gap-2">
-          <label
-            className="block text-xs font-medium text-gray-900"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <div className="relative">
-            <input
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              required
-            />
-            <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-          </div>
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" type="email" placeholder="m@example.com" required />
         </div>
         <div className="grid gap-2">
-          <label
-            className="block text-xs font-medium text-gray-900"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <div className="relative">
-            <input
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              required
-              minLength={6}
-            />
-            <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+          <div className="flex items-center">
+            <Label htmlFor="password">Password</Label>
+            <a
+              href="#"
+              className="ml-auto text-sm underline-offset-4 hover:underline"
+            >
+              Forgot your password?
+            </a>
           </div>
+          <Input id="password" type="password" required />
         </div>
-        <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <Button
-          type="submit"
-          className="w-full pr-4 pl-4"
-          aria-disabled={isPending}
-        >
-          Log in <ArrowRightIcon className=" ml-auto h-5 w-5 text-gray-50" />
+        <Button type="submit" className="w-full pt-2 pb-2">
+          Login
         </Button>
-        <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-gray-300">
-          <span className="relative z-10 bg-white px-2 text-gray-500">
+        <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+          <span className="relative z-10 bg-background px-2 text-muted-foreground">
             Or continue with
           </span>
         </div>
@@ -127,36 +93,16 @@ export default function LoginForm() {
           </svg>
           Login with Google
         </Button>
-        <GoogleOAuthProvider clientId="987406524159-i31cbbu7759b56kq3dliotmm5kntauv6.apps.googleusercontent.com">
-          <GoogleLogin
-            onSuccess={(response) => {
-              console.log("test", response);
-              fetch("http://localhost:3000/auth/google-authentication", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  token: response.credential,
-                }),
-              })
-                .then((response) => console.log(response))
-                .then((data) => console.log(data));
-            }}
-          />
-        </GoogleOAuthProvider>
       </div>
-      <div
-        className="flex h-8 items-end space-x-1"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {errorMessage && (
-          <>
-            <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">{errorMessage}</p>
-          </>
-        )}
+      <div className="text-center text-sm">
+        Don&apos;t have an account?{" "}
+        <button
+          type="button"
+          className="underline underline-offset-4"
+          onClick={onSwitchToSignUp}
+        >
+          Sign up
+        </button>
       </div>
     </form>
   );

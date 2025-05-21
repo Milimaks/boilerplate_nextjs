@@ -136,3 +136,12 @@ export async function authenticate(
     throw error;
   }
 }
+
+export async function register(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  
+
+  
+}

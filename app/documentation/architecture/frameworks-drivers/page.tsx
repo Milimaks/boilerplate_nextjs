@@ -1,9 +1,9 @@
 "use client";
-import ProjectTree from "@/components/features/documentation/architecture/project-tree";
-import { links } from "@/components/features/documentation/architecture/data/navigation-data";
+import ProjectTree from "@/features/documentation/architecture/project-tree";
+import { links } from "@/features/documentation/architecture/data/navigation-data";
 import { NavPagination } from "@/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
-import FrameworkAndDriversSection from "@/components/features/documentation/architecture/frameworks-drivers/framework-and-driver-section";
+import FrameworkAndDriversSection from "@/features/documentation/architecture/frameworks-drivers/framework-and-driver-section";
 
 export default function Page() {
   // Fetch all files from the server for the project tree

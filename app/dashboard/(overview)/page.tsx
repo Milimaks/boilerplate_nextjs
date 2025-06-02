@@ -1,7 +1,7 @@
 import { lusitana } from "@/app/ui/fonts";
-import CardWrapper from "@/components/features/dashboard/cards";
-import LatestInvoices from "@/components/features/dashboard/latest-invoices";
-import RevenueChart from "@/components/features/dashboard/revenue-chart";
+import CardWrapper from "@/features/dashboard/cards";
+import LatestInvoices from "@/features/dashboard/latest-invoices";
+import RevenueChart from "@/features/dashboard/revenue-chart";
 import {
   CardsSkeleton,
   LatestInvoicesSkeleton,

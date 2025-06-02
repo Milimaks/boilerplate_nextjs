@@ -1,6 +1,6 @@
-import Form from "@/components/features/invoices/edit-form";
-import Breadcrumbs from "@/components/features/invoices/breadcrumbs";
-import { fetchCustomers, fetchInvoiceById } from "@/lib/queries/data";
+import Form from "@/features/invoices/edit-form";
+import Breadcrumbs from "@/features/invoices/breadcrumbs";
+import { fetchCustomers, fetchInvoiceById } from "@/shared/lib/queries/data";
 import { notFound } from "next/navigation";
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {

@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import bcrypt from "bcrypt";
 import postgres from "postgres";
-import { users } from "../../../lib/mocks/placeholder-data";
+import { users } from "../../../shared/lib/mocks/placeholder-data";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: undefined });
 

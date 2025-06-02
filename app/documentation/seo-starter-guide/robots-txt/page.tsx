@@ -1,6 +1,6 @@
 "use client";
 
-import { links } from "@/components/features/documentation/seo-starter-guide/data";
+import { links } from "@/features/documentation/seo-starter-guide/data";
 import { ArticleProgress } from "@/components/reusable/articleProgess";
 import { Code } from "@/components/reusable/code";
 import { NavPagination } from "@/components/reusable/nav-pagination";

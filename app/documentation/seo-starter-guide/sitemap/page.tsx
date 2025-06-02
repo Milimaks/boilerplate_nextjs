@@ -1,12 +1,12 @@
 "use client";
 
-import { useArticleProgress } from "@/lib/hooks/custom-hooks";
+import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
 import { ArticleProgress } from "@/components/reusable/articleProgess";
 import { Code } from "@/components/reusable/code";
-import { links } from "@/components/features/documentation/seo-starter-guide/data";
+import { links } from "@/features/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/components/reusable/nav-pagination";
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import Link from "next/link";
 
 export default function Page() {

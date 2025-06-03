@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "lib/utils";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
@@ -5,6 +6,12 @@ import { Label } from "@/shared/components/ui/label";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { authenticate } from "lib/actions/action";
+import {
+  AtSymbolIcon,
+  KeyIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/outline";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 
 export function LoginForm({
   className,
@@ -17,6 +24,8 @@ export function LoginForm({
     authenticate,
     undefined
   );
+  console.log("formAction", formAction);
+
   return (
     <form
       action={formAction}
@@ -32,7 +41,13 @@ export function LoginForm({
       <div className="grid gap-6">
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="m@example.com"
+            required
+          />
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
@@ -44,11 +59,24 @@ export function LoginForm({
               Forgot your password?
             </a>
           </div>
-          <Input id="password" type="password" required />
+          <Input id="password" type="password" name="password" required />
         </div>
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <Button type="submit" className="w-full pt-2 pb-2">
           Login
         </Button>
+        <div
+          className="flex h-8 items-end space-x-1"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {errorMessage && (
+            <>
+              <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+              <p className="text-sm text-red-500">{errorMessage}</p>
+            </>
+          )}
+        </div>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">
             Or continue with

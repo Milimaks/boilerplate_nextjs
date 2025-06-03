@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif"],
   },
+
   /* config options here */
 };
 

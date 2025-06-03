@@ -1,6 +1,6 @@
 // Map of links to display in the side navigation.
 
-import { NavSection } from "@/shared/lib/validation/definitions";
+import { NavSection } from "lib/validation/definitions";
 
 // Depending on the size of the application, this would be stored in a database.
 export const links: NavSection[] = [

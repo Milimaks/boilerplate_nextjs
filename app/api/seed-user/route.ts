@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import postgres from "postgres";
 import { users } from "../../../shared/lib/mocks/placeholder-data";
 

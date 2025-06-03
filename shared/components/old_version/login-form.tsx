@@ -9,7 +9,7 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
 import { useActionState } from "react";
-import { authenticate } from "@/shared/lib/actions/action";
+import { authenticate } from "lib/actions/action";
 import { useSearchParams } from "next/navigation";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 

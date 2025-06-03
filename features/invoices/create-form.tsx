@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomerField } from "@/shared/lib/validation/definitions";
+import { CustomerField } from "lib/validation/definitions";
 import Link from "next/link";
 import {
   CheckIcon,
@@ -9,7 +9,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import { Button } from "@/components/reusable/button";
-import { createInvoice, State } from "@/shared/lib/actions/action";
+import { createInvoice, State } from "lib/actions/action";
 import { useActionState } from "react";
 
 export default function Form({ customers }: { customers: CustomerField[] }) {

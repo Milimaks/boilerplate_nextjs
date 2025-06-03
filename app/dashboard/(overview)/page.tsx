@@ -6,7 +6,7 @@ import {
   CardsSkeleton,
   LatestInvoicesSkeleton,
   RevenueChartSkeleton,
-} from "@/components/reusable/skeletons";
+} from "@/shared/components/reusable/skeletons";
 import { Suspense } from "react";
 
 export default async function Page() {

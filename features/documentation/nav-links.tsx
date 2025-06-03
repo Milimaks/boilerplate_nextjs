@@ -1,12 +1,12 @@
 "use client";
 
-import { cn } from "@/shared/lib/utils";
+import { cn } from "lib/utils";
 import clsx from "clsx";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { IconName, NavSection } from "@/shared/lib/validation/definitions";
+import { IconName, NavSection } from "lib/validation/definitions";
 import {
   HomeIcon,
   DocumentDuplicateIcon,

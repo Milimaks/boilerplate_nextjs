@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  CustomerField,
-  InvoiceForm,
-} from "@/shared/lib/validation/definitions";
+import { CustomerField, InvoiceForm } from "lib/validation/definitions";
 import {
   CheckIcon,
   ClockIcon,
@@ -12,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Button } from "@/components/reusable/button";
-import { State, updateInvoice } from "@/shared/lib/actions/action";
+import { State, updateInvoice } from "lib/actions/action";
 import { useActionState } from "react";
 
 export default function EditInvoiceForm({

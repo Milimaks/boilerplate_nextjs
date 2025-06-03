@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "lib/utils";
 
 export const Section = (
   props: PropsWithChildren<{ className?: string; id?: string }>

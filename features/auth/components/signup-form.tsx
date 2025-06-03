@@ -1,9 +1,9 @@
-import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
-import { Label } from "@/shared/ui/label";
+import { Button } from "@/shared/components/ui/button";
+import { Input } from "@/shared/components/ui/input";
+import { Label } from "@/shared/components/ui/label";
 import { useSignUp } from "@/features/auth/hooks/useSignUp";
-import { cn } from "@/shared/lib/utils";
-import { Checkbox } from "../../../shared/ui/checkbox";
+import { cn } from "lib/utils";
+import { Checkbox } from "@/shared/components/ui/checkbox";
 import { useState } from "react";
 
 export function SignUpForm({
@@ -31,7 +31,7 @@ export function SignUpForm({
   };
   return (
     <form
-      className={cn("flex flex-col gap-6", className)}
+      className={cn("flex flex-col gap-6 bg-slate-950", className)}
       onSubmit={handleSubmit}
       {...props}
     >

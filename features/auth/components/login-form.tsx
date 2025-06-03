@@ -1,10 +1,10 @@
-import { cn } from "@/shared/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { cn } from "lib/utils";
+import { Button } from "@/shared/components/ui/button";
+import { Input } from "@/shared/components/ui/input";
+import { Label } from "@/shared/components/ui/label";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
-import { authenticate } from "@/app/(auth)/actions";
+import { authenticate } from "lib/actions/action";
 
 export function LoginForm({
   className,

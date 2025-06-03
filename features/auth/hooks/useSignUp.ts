@@ -4,7 +4,7 @@ import {
   UserSignUpSchema,
 } from "@/src/entities/schemas/user.schema";
 import { signUpApi } from "@/features/auth/api/signUpApi"; // <- appel à l'API
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 
 export function useSignUp() {
   return useMutation({

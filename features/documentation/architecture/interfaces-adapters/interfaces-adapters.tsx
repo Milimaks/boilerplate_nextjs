@@ -1,5 +1,5 @@
-import { CodeBlock } from "@/components/reusable/code-block";
-import { buttonVariants } from "@/components/ui/button";
+import { CodeBlock } from "@/shared/components/reusable/code-block";
+import { buttonVariants } from "@/shared/components/ui/button";
 import { cn } from "lib/utils";
 import Link from "next/link";
 

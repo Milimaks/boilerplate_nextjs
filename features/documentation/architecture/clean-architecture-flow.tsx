@@ -1,10 +1,10 @@
 "use client";
-import { CodeBlock } from "@/components/reusable/code-block";
+import { CodeBlock } from "@/shared/components/reusable/code-block";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from "@/shared/components/ui/collapsible";
 import {
   ArrowDown,
   Database,

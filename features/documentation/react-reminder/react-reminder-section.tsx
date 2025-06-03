@@ -1,4 +1,4 @@
-import { CodeBlock } from "@/components/reusable/code-block";
+import { CodeBlock } from "@/shared/components/reusable/code-block";
 
 export default function ReactReminderSection() {
   return (

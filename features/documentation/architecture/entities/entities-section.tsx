@@ -1,6 +1,6 @@
 "use client";
-import { CodeBlock } from "@/components/reusable/code-block";
-import { Card, CardContent } from "@/components/ui/card";
+import { CodeBlock } from "@/shared/components/reusable/code-block";
+import { Card, CardContent } from "@/shared/components/ui/card";
 import {
   TableBody,
   TableCell,
@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
   Table,
-} from "@/components/ui/table";
+} from "@/shared/components/ui/table";
 
 export default function EntitiesSection() {
   return (

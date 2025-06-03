@@ -27,11 +27,12 @@ export function SignUpForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("formData", formData);
     mutate(formData);
   };
   return (
     <form
-      className={cn("flex flex-col gap-6 bg-slate-950", className)}
+      className={cn("flex flex-col gap-6 ", className)}
       onSubmit={handleSubmit}
       {...props}
     >

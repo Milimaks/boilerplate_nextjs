@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AcmeLogo from "@/components/reusable/acme-logo";
+import AcmeLogo from "@/shared/components/reusable/acme-logo";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "auth";
 import NavLinks from "./nav-links";

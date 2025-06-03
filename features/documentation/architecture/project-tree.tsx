@@ -1,6 +1,6 @@
 "use client";
 import { sampleProject } from "@/features/documentation/architecture/data/architecture-tree";
-import { CodeBlock } from "@/components/reusable/code-block";
+import { CodeBlock } from "@/shared/components/reusable/code-block";
 import {
   ChevronRight,
   Code,

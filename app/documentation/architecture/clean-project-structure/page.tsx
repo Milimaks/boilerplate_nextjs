@@ -1,9 +1,9 @@
 "use client";
-import ProjectTree from "@/components/features/documentation/architecture/project-tree";
-import { links } from "@/components/features/documentation/architecture/data/navigation-data";
+import ProjectTree from "@/features/documentation/architecture/project-tree";
+import { links } from "@/features/documentation/architecture/data/navigation-data";
 import { NavPagination } from "@/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
-import { CleanArchitectureFlow } from "@/components/features/documentation/architecture/clean-architecture-flow";
+import { CleanArchitectureFlow } from "@/features/documentation/architecture/clean-architecture-flow";
 
 export default function Page() {
   // Fetch all files from the server for the project tree

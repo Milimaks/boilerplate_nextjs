@@ -1,5 +1,4 @@
 "use server";
-
 import { z } from "zod";
 import postgres from "postgres";
 import { revalidatePath } from "next/cache";
@@ -123,6 +122,7 @@ export async function authenticate(
   formData: FormData
 ) {
   try {
+    console.log("formData", formData);
     await signIn("credentials", formData);
   } catch (error) {
     if (error instanceof AuthError) {

@@ -1,4 +1,4 @@
-import ReactReminderSection from "@/components/features/documentation/react-reminder/react-reminder-section";
+import ReactReminderSection from "@/features/documentation/react-reminder/react-reminder-section";
 
 export default function Page() {
   return (

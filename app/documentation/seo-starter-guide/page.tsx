@@ -1,15 +1,15 @@
 "use client";
 
-import { useArticleProgress } from "@/lib/hooks/custom-hooks";
+import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
 import { ArticleProgress } from "@/components/reusable/articleProgess";
-import { links } from "@/components/features/documentation/seo-starter-guide/data";
+import { links } from "@/features/documentation/seo-starter-guide/data";
 import { NavPagination } from "@/components/reusable/nav-pagination";
 import {
   SeoOffPage,
   SeoOnPage,
   SeoTechnique,
   SeoTools,
-} from "@/components/features/documentation/seoElements";
+} from "@/features/documentation/seoElements";
 import { SeoChecklist } from "@/components/reusable/seoCheckList";
 
 export default function Page() {
@@ -19,8 +19,6 @@ export default function Page() {
     { id: "getting-started", title: "Getting Started" },
     { id: "best-practices", title: "Best Practices" },
   ];
-
-  const activeSection = useArticleProgress(sections);
 
   return (
     <main className="flex flex-row justify-center">
@@ -149,12 +147,7 @@ export default function Page() {
       {/* Progress of the article */}
 
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
+        <ArticleProgress sections={sections} />
       </div>
     </main>
   );

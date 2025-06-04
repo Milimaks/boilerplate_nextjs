@@ -1,6 +1,6 @@
-import Form from "@/components/features/invoices/create-form";
-import Breadcrumbs from "@/components/features/invoices/breadcrumbs";
-import { fetchCustomers } from "@/lib/queries/data";
+import Form from "@/features/invoices/create-form";
+import Breadcrumbs from "@/features/invoices/breadcrumbs";
+import { fetchCustomers } from "lib/queries/data";
 
 export default async function Page() {
   const customers = await fetchCustomers();

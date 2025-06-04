@@ -1,7 +1,7 @@
 "use client";
 import ProjectTree from "@/features/documentation/architecture/project-tree";
 import { links } from "@/features/documentation/architecture/data/navigation-data";
-import { NavPagination } from "@/components/reusable/nav-pagination";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
 import { useEffect, useState } from "react";
 import EntitiesSection from "@/features/documentation/architecture/entities/entities-section";
 

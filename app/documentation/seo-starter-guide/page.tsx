@@ -1,16 +1,16 @@
 "use client";
 
 import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
-import { ArticleProgress } from "@/components/reusable/articleProgess";
+import { ArticleProgress } from "@/shared/components/reusable/articleProgess";
 import { links } from "@/features/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/components/reusable/nav-pagination";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
 import {
   SeoOffPage,
   SeoOnPage,
   SeoTechnique,
   SeoTools,
 } from "@/features/documentation/seoElements";
-import { SeoChecklist } from "@/components/reusable/seoCheckList";
+import { SeoChecklist } from "@/shared/components/reusable/seoCheckList";
 
 export default function Page() {
   const sections = [

@@ -1,11 +1,10 @@
 "use client";
 
-import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
-import { ArticleProgress } from "@/components/reusable/articleProgess";
-import { Code } from "@/components/reusable/code";
 import { links } from "@/features/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/components/reusable/nav-pagination";
-import { buttonVariants } from "@/components/ui/button";
+import { ArticleProgress } from "@/shared/components/reusable/articleProgess";
+import { Code } from "@/shared/components/reusable/code";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
+import { buttonVariants } from "@/shared/components/ui/button";
 import { cn } from "lib/utils";
 import Link from "next/link";
 
@@ -15,8 +14,6 @@ export default function Page() {
     { id: "static-sitemap", title: "Static sitemap" },
     { id: "dynamic-sitemap", title: "Dynamic sitemap" },
   ];
-
-  const activeSection = useArticleProgress(sections);
 
   return (
     <main className="flex flex-row justify-center">
@@ -223,12 +220,7 @@ export default function Page() {
       </div>
       {/* Progress of the article */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
+        <ArticleProgress sections={sections} />
       </div>
     </main>
   );

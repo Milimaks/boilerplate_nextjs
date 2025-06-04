@@ -5,7 +5,7 @@ import {
   CardsSkeleton,
   LatestInvoicesSkeleton,
   RevenueChartSkeleton,
-} from "@/components/reusable/skeletons";
+} from "@/shared/components/reusable/skeletons";
 import { Suspense } from "react";
 import { lusitana } from "../ui/fonts";
 

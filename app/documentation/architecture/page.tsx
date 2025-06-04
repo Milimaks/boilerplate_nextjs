@@ -1,8 +1,8 @@
 "use client";
 import CleanArchitectureOverview from "@/features/documentation/architecture/clean-architecture-overview";
 import { links } from "@/features/documentation/architecture/data/navigation-data";
-import { MoreRessources } from "@/components/reusable/more-ressources";
-import { NavPagination } from "@/components/reusable/nav-pagination";
+import { MoreRessources } from "@/shared/components/reusable/more-ressources";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
 import { externalLinks } from "./external-ressources";
 
 export default function Page() {

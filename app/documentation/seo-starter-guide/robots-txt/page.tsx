@@ -1,11 +1,11 @@
 "use client";
 
 import { links } from "@/features/documentation/seo-starter-guide/data";
-import { ArticleProgress } from "@/components/reusable/articleProgess";
-import { Code } from "@/components/reusable/code";
-import { NavPagination } from "@/components/reusable/nav-pagination";
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { ArticleProgress } from "@/shared/components/reusable/articleProgess";
+import { Code } from "@/shared/components/reusable/code";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
+import { buttonVariants } from "@/shared/components/ui/button";
+import { Card, CardContent } from "@/shared/components/ui/card";
 import Link from "next/link";
 
 export default function Page() {

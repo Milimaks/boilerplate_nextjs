@@ -1,12 +1,11 @@
 "use client";
 
-import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
-import { ArticleProgress } from "@/components/reusable/articleProgess";
 import { links } from "@/features/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/components/reusable/nav-pagination";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { ArticleProgress } from "@/shared/components/reusable/articleProgess";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
+import { buttonVariants } from "@/shared/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const sections = [
@@ -15,8 +14,6 @@ export default function Page() {
     { id: "getting-started", title: "Getting Started" },
     { id: "best-practices", title: "Best Practices" },
   ];
-
-  const activeSection = useArticleProgress(sections);
 
   return (
     <main className="flex flex-row justify-center">
@@ -218,12 +215,7 @@ export default function Page() {
 
       {/* Progress of the article */}
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
+        <ArticleProgress sections={sections} />
       </div>
     </main>
   );

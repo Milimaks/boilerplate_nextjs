@@ -1,15 +1,15 @@
 "use client";
 
 import { useArticleProgress } from "@/shared/hooks/use-articleProgress";
-import { ArticleProgress } from "@/components/reusable/articleProgess";
+import { ArticleProgress } from "@/shared/components/reusable/articleProgess";
 import { links } from "@/features/documentation/seo-starter-guide/data";
-import { NavPagination } from "@/components/reusable/nav-pagination";
-import { buttonVariants } from "@/components/ui/button";
+import { NavPagination } from "@/shared/components/reusable/nav-pagination";
+import { buttonVariants } from "@/shared/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { Code } from "@/components/reusable/code";
-import { InlineCode } from "@/components/reusable/inlineCode";
-import { Section } from "@/components/reusable/section";
+import { Code } from "@/shared/components/reusable/code";
+import { InlineCode } from "@/shared/components/reusable/inlineCode";
+import { Section } from "@/shared/components/reusable/section";
 
 export default function Page() {
   const sections = [
@@ -19,8 +19,6 @@ export default function Page() {
     { id: "importance", title: "Pourquoi sont-ils importants ?" },
     { id: "amelioration", title: "Comment les améliorer ?" },
   ];
-
-  const activeSection = useArticleProgress(sections);
 
   return (
     <main className="flex flex-row justify-center">
@@ -501,12 +499,7 @@ import _ from 'lodash';
       </div>
 
       <div className="hidden xl:block sticky top-10 h-fit min-w-[200px] max-w-[300px]">
-        <ArticleProgress
-          sections={sections.map((section) => ({
-            ...section,
-            isActive: section.id === activeSection,
-          }))}
-        />
+        <ArticleProgress sections={sections} />
       </div>
     </main>
   );

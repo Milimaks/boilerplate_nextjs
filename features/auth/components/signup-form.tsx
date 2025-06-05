@@ -27,7 +27,6 @@ export function SignUpForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("formData", formData);
     mutate(formData);
   };
   return (

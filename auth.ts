@@ -4,16 +4,13 @@ import { authConfig } from "./auth.config";
 import { z } from "zod";
 import type { User } from "lib/validation/definitions";
 import bcrypt from "bcryptjs";
-import postgres from "postgres";
-
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
+import sql from "./lib/db";
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
     return user[0];
   } catch (error) {
-    console.error("Failed to fetch user:", error);
     throw new Error("Failed to fetch user.");
   }
 }
@@ -28,6 +25,7 @@ export const { auth, signIn, signOut } = NextAuth({
           .safeParse(credentials);
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
+          console.log("email", parsedCredentials.data);
           const user = await getUser(email);
           if (!user) return null;
           const passwordsMatch = await bcrypt.compare(password, user.password);

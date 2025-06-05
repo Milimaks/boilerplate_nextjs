@@ -26,10 +26,8 @@ export function useArticleProgress(
     const callback = (entries: IntersectionObserverEntry[]) => {
       const currentlyVisible: string[] = [];
       entries.forEach((entry) => {
-        console.log("entry", entry);
         if (entry.isIntersecting) {
           currentlyVisible.push(entry.target.id);
-          // console.log("entry", entry.target.id);
         }
       });
 

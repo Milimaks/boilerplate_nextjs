@@ -24,7 +24,6 @@ export function LoginForm({
     authenticate,
     undefined
   );
-  console.log("formAction", formAction);
 
   return (
     <form
